@@ -7,65 +7,27 @@ var start_time;
 var time_elapsed;
 var interval;
 
-
 $(document).ready(function() {
 	switchDivs('welcome')
 	context = canvas.getContext("2d");
 
-	$("#signupForm").validate({
-		rules: {
-			firstname: "required",
-			lastname: "required",
-			username: {
-				required: true,
-				minlength: 2
-			},
-			password: {
-				required: true,
-				minlength: 6
-			},
-			confirm_password: {
-				required: true,
-				minlength: 6,
-				equalTo: "#password"
-			},
-			email: {
-				required: true,
-				email: true
-			},
-			messages: {
-				firstname: "Please enter your firstname",
-				lastname: "Please enter your lastname",
-				username: {
-					required: "Please enter a username",
-					minlength: "Your username must consist of at least 2 characters"
-				},
-				password: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long"
-				},
-				confirm_password: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long",
-					equalTo: "Please enter the same password as above"
-				},
-				email: "Please enter a valid email address",
-			}
-	
-		}
-	});
-
-	
-	// propose username by combining first- and lastname
-	$("#username").focus(function() {
-		var firstname = $("#firstname").val();
-		var lastname = $("#lastname").val();
-		if (firstname && lastname && !this.value) {
-			this.value = firstname + "." + lastname;
-		}
-	});
 });
 
+// $.validator.setDefaults({
+// 	submitHandler: function() {
+// 		alert("submitted!");
+// 	}
+// });
+
+
+	// // propose username by combining first- and lastname
+	// $("#username").focus(function() {
+	// 	var firstname = $("#firstname").val();
+	// 	var lastname = $("#lastname").val();
+	// 	if (firstname && lastname && !this.value) {
+	// 		this.value = firstname + "." + lastname;
+	// 	}
+	// });
 
 
 function Start() {
@@ -231,23 +193,18 @@ function UpdatePosition() {
 function switchDivs(id){
 
     	//hide all sections
-    	var welcome = document.getElementById('welcome');
-    	welcome.style.visibility="hidden";
-		var register = document.getElementById('register');
-    	register.style.visibility="hidden";
-		var logIn = document.getElementById('logIn');
-		logIn.style.visibility="hidden";
-		var gameBoard = document.getElementById('gameBoard');
-    	gameBoard.style.visibility="hidden";
+    	var section2 = document.getElementById('welcome');
+    	section2.style.visibility="hidden";
+		var section3 = document.getElementById('register');
+    	section3.style.visibility="hidden";
+		var section4 = document.getElementById('logIn');
+		section4.style.visibility="hidden";
+		var section4 = document.getElementById('gameBoard');
+    	section4.style.visibility="hidden";
     	
     	//show only one section
 		var selected = document.getElementById(id);
 		selected .style.visibility="visible";
-
-		if(id == 'gameBoard'){
-			Start(); 
-		}
-
 }
 
 function pickDate() {

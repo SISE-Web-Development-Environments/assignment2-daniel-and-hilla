@@ -6,9 +6,9 @@
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="./jQuery validation plug-in - main demo_files/jquery.js.download"></script><script src="./jQuery validation plug-in - main demo_files/jquery-1.11.1.js.download"></script>
 		<script src="./jQuery validation plug-in - main demo_files/jquery.validate.js.download"></script>
-		<script src="js/jquery.validate.js"></script>
-		<script src="js/signup-form.js"></script>
+		<script src="./jqueryvalidation.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<script type="text/javascript" src="./register.js"></script>
 		<title>Pacman</title>
 		<style type="text/css">
 header
@@ -91,7 +91,7 @@ footer
 				<button onclick="switchDivs('logIn')">Log In</button>
 		</div>
 		<div class='display' id = 'register'>
-			<form class="cmxform" id="signupForm" method="get" action=ready() novalidate="novalidate"> 
+			<form class="cmxform" id="signupForm"> 
 			<legend>Validating a complete form</legend>
 			<p>
 			<label for="firstname">Firstname</label>
@@ -119,16 +119,12 @@ footer
 			</p>
 			<p>Date: <input type="text" onclick=pickDate() id="datepicker"></p>
 			<p>
-				<input class="submit" type="submit" value="Submit">
-			</p>
-			<p>
-			<label for="cemail">E-Mail (required)</label>
-			<input id="cemail" type="email" name="email" required="" aria-required="true" class="error" aria-invalid="true"><label id="cemail-error" class="error" for="cemail">This field is required.</label>
+				<button class="submit" type="submit" value="Submit">Register</button>
 			</p>
 		</form>
 		</div>
 		<div class='display' id = 'logIn'>
-			<form class="cmxform" id="signupForm" method="get" action=ready() novalidate="novalidate"> 
+			<form class="cmxform" id="logInForm"> 
 				<fieldset>
 				<legend>Log in form</legend>
 				<p>
