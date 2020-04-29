@@ -2,20 +2,160 @@
 <html>
 	<head>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="./jQuery validation plug-in - main demo_files/jquery.js.download"></script><script src="./jQuery validation plug-in - main demo_files/jquery-1.11.1.js.download"></script>
+		<script src="./jQuery validation plug-in - main demo_files/jquery.validate.js.download"></script>
 		<script type="text/javascript" src="./app.js"></script>
+		<title>Pacman</title>
+		<style type="text/css">
+header
+{
+	background: #0f0;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 800px;
+	height: 100px;
+}
+nav
+{
+	background: #f00;
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	width: 150px;
+	height: 500px;
+}
+aside
+{
+	background: #f00;
+	position: absolute;
+	top: 100px;
+	left: 650px;
+	width: 150px;
+	height: 500px;
+}
+.display
+{
+	background: #fff;
+	position: absolute;
+	top: 100px;
+	left: 150px;
+	width: 500px;
+	height: 500px;
+}
+footer
+{
+	background: #0f0;
+	position: absolute;
+	top: 500px;
+	left: 0px;
+	width: 800px;
+	height: 100px;
+}      
+	</style>
+	
 	</head>
 
 	<body>
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
+
+		<header>
+			<p>title</p>
+		</header>
+
+		<nav>
+			<a onclick="switchDivs('welcome')" href="#">Welcome</a>
+			</br>
+			<a onclick="switchDivs('register')" href="#">Register</a>
+			</br>
+			<a onclick="switchDivs('logIn')" href="#">Log In</a>
+			</br>
+			<a onclick="showAboutDialog()" href="#">About</a>
+		</nav>
+
+		<contet>
+		<div class='display' id = 'welcome'>
+				<p> Welcome!</p>
+				<button onclick="switchDivs('register')">Register</button>
+				<button onclick="switchDivs('logIn')">Log In</button>
 		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
+		<div class='display' id = 'register'>
+			<form class="cmxform" id="signupForm" method="get" action=ready() novalidate="novalidate"> 
+			<legend>Validating a complete form</legend>
+			<p>
+			<label for="firstname">Firstname</label>
+			<input id="firstname" name="firstname" type="text">
+			</p>
+			<p>
+			<label for="lastname">Lastname</label>
+			<input id="lastname" name="lastname" type="text">
+			</p>
+			<p>
+			<label for="username">Username</label>
+			<input id="username" name="username" type="text">
+			</p>
+			<p>
+			<label for="password">Password</label>
+			<input id="password" name="password" type="password">
+			</p>
+			<p>
+			<label for="confirm_password">Confirm password</label>
+			<input id="confirm_password" name="confirm_password" type="password">
+			</p>
+			<p>
+			<label for="email">Email</label>
+			<input id="email" name="email" type="email">
+			</p>
+			<p>Date: <input type="text" onclick=pickDate() id="datepicker"></p>
+			<p>
+				<input class="submit" type="submit" value="Submit">
+			</p>
+		</form>
 		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
+		<div class='display' id = 'logIn'>
+			<form class="cmxform" id="signupForm" method="get" action=ready() novalidate="novalidate"> 
+				<legend>Log in form</legend>
+				<p>
+				<label for="username">Username</label>
+				<input id="username" name="username" type="text">
+				</p>
+				<p>
+				<label for="password">Password</label>
+				<input id="password" name="password" type="password">
+				</p>
+				<p>
+				<label for="email">Email</label>
+				<input id="email" name="email" type="email">
+				</p>
+				<p>
+					<input class="submit" type="submit" value="Submit">
+				</p>
+			</form>
 		</div>
+		<div class='display' id="gameBoard">
+			<div id="score">
+				<label for="lblScore">SCORE:</label>
+				<input id="lblScore" type="text" />
+			</div>
+			<div id="time">
+				<label for="lblTime">TIME:</label>
+				<input id="lblTime" type="text" />
+			</div>
+			<div id="game">
+				<canvas id="canvas" height="600" width="600"></canvas>
+			</div>
+		</div>
+	</contet>
+
+	<dialog id="aboutDialog">
+		<h3>This is a dialog window!</h3>
+		<br>
+		<button onclick="closeAboutDialog()">Close dialog</button>	
+	</dialog>
+
+	<footer>
+		<p>call me </p>
+	</footer>
 	</body>
 </html>

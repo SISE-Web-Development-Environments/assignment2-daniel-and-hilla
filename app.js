@@ -8,9 +8,75 @@ var time_elapsed;
 var interval;
 
 $(document).ready(function() {
+	switchDivs('welcome')
 	context = canvas.getContext("2d");
-	Start();
+
 });
+
+$.validator.setDefaults({
+	submitHandler: function() {
+		alert("submitted!");
+	}
+});
+
+$().ready(function() {
+	// validate signup form on keyup and submit
+	$("#signupForm").validate({
+		rules: {
+			firstname: "required",
+			lastname: "required",
+			username: {
+				required: true,
+				minlength: 2
+			},
+			password: {
+				required: true,
+				minlength: 5
+			},
+			confirm_password: {
+				required: true,
+				minlength: 5,
+				equalTo: "#password"
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			password: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long"
+			},
+			confirm_password: {
+				required: "Please provide a password",
+				minlength: "Your password must be at least 5 characters long",
+				equalTo: "Please enter the same password as above"
+			},
+			email: "Please enter a valid email address",
+		}
+	});
+
+	// propose username by combining first- and lastname
+	$("#username").focus(function() {
+		var firstname = $("#firstname").val();
+		var lastname = $("#lastname").val();
+		if (firstname && lastname && !this.value) {
+			this.value = firstname + "." + lastname;
+		}
+	});
+
+	//code to hide topic selection, disable for demo
+	var newsletter = $("#newsletter");
+	// newsletter topics are optional, hide at first
+	var inital = newsletter.is(":checked");
+	var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
+	var topicInputs = topics.find("input").attr("disabled", !inital);
+	// show when newsletter is checked
+	newsletter.click(function() {
+		topics[this.checked ? "removeClass" : "addClass"]("gray");
+		topicInputs.attr("disabled", !this.checked);
+	});
+});
+
 
 function Start() {
 	board = new Array();
@@ -29,7 +95,8 @@ function Start() {
 				(i == 3 && j == 4) ||
 				(i == 3 && j == 5) ||
 				(i == 6 && j == 1) ||
-				(i == 6 && j == 2)
+				(i == 6 && j == 2) ||
+				(i == 0 && j == 0)
 			) {
 				board[i][j] = 4;
 			} else {
@@ -170,3 +237,36 @@ function UpdatePosition() {
 		Draw();
 	}
 }
+
+function switchDivs(id){
+
+    	//hide all sections
+    	var section2 = document.getElementById('welcome');
+    	section2.style.visibility="hidden";
+		var section3 = document.getElementById('register');
+    	section3.style.visibility="hidden";
+		var section4 = document.getElementById('logIn');
+		section4.style.visibility="hidden";
+		var section4 = document.getElementById('gameBoard');
+    	section4.style.visibility="hidden";
+    	
+    	//show only one section
+		var selected = document.getElementById(id);
+		selected .style.visibility="visible";
+}
+
+function pickDate() {
+    $( "#datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true
+    });
+}
+
+function showAboutDialog() { 
+	document.getElementById("aboutDialog").showModal(); 
+} 
+
+function closeAboutDialog() { 
+	document.getElementById("aboutDialog").close(); 
+}
+
