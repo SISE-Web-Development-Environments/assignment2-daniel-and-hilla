@@ -7,16 +7,11 @@ var start_time;
 var time_elapsed;
 var interval;
 
+
 $(document).ready(function() {
 	switchDivs('welcome')
 	context = canvas.getContext("2d");
 
-});
-
-
-
-
-	// validate signup form on keyup and submit
 	$("#signupForm").validate({
 		rules: {
 			firstname: "required",
@@ -60,6 +55,7 @@ $(document).ready(function() {
 		}
 	});
 
+	
 	// propose username by combining first- and lastname
 	$("#username").focus(function() {
 		var firstname = $("#firstname").val();
@@ -68,18 +64,7 @@ $(document).ready(function() {
 			this.value = firstname + "." + lastname;
 		}
 	});
-
-	//code to hide topic selection, disable for demo
-	var newsletter = $("#newsletter");
-	// newsletter topics are optional, hide at first
-	var inital = newsletter.is(":checked");
-	var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
-	var topicInputs = topics.find("input").attr("disabled", !inital);
-	// show when newsletter is checked
-	newsletter.click(function() {
-		topics[this.checked ? "removeClass" : "addClass"]("gray");
-		topicInputs.attr("disabled", !this.checked);
-	});
+});
 
 
 
@@ -246,18 +231,23 @@ function UpdatePosition() {
 function switchDivs(id){
 
     	//hide all sections
-    	var section2 = document.getElementById('welcome');
-    	section2.style.visibility="hidden";
-		var section3 = document.getElementById('register');
-    	section3.style.visibility="hidden";
-		var section4 = document.getElementById('logIn');
-		section4.style.visibility="hidden";
-		var section4 = document.getElementById('gameBoard');
-    	section4.style.visibility="hidden";
+    	var welcome = document.getElementById('welcome');
+    	welcome.style.visibility="hidden";
+		var register = document.getElementById('register');
+    	register.style.visibility="hidden";
+		var logIn = document.getElementById('logIn');
+		logIn.style.visibility="hidden";
+		var gameBoard = document.getElementById('gameBoard');
+    	gameBoard.style.visibility="hidden";
     	
     	//show only one section
 		var selected = document.getElementById(id);
 		selected .style.visibility="visible";
+
+		if(id == 'gameBoard'){
+			Start(); 
+		}
+
 }
 
 function pickDate() {

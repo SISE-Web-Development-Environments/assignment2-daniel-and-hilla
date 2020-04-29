@@ -6,36 +6,41 @@
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="./jQuery validation plug-in - main demo_files/jquery.js.download"></script><script src="./jQuery validation plug-in - main demo_files/jquery-1.11.1.js.download"></script>
 		<script src="./jQuery validation plug-in - main demo_files/jquery.validate.js.download"></script>
+		<script src="js/jquery.validate.js"></script>
 		<script src="js/signup-form.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<title>Pacman</title>
 		<style type="text/css">
 header
 {
-	background: #0f0;
+	background: rgb(88, 113, 141);
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	width: 800px;
 	height: 100px;
+	text-align: center;
 }
 nav
 {
-	background: #f00;
+	background: rgb(123, 144, 189);
 	position: absolute;
 	top: 100px;
 	left: 0px;
 	width: 150px;
 	height: 500px;
+	text-align: center;
 }
+
 aside
 {
-	background: #f00;
+	background: rgb(82, 93, 128);
 	position: absolute;
 	top: 100px;
 	left: 650px;
 	width: 150px;
 	height: 500px;
+	text-align: center;
 }
 .display
 {
@@ -45,15 +50,17 @@ aside
 	left: 150px;
 	width: 500px;
 	height: 500px;
+	text-align: center;
 }
 footer
 {
-	background: #0f0;
+	background: rgb(44, 67, 82);
 	position: absolute;
 	top: 500px;
 	left: 0px;
 	width: 800px;
 	height: 100px;
+	text-align: center;
 }      
 	</style>
 	
@@ -73,6 +80,8 @@ footer
 			<a onclick="switchDivs('logIn')" href="#">Log In</a>
 			</br>
 			<a onclick="showAboutDialog()" href="#">About</a>
+			</br>			
+			<a onclick="switchDivs('gameBoard')" href="#">Game Board</a>
 		</nav>
 
 		<contet>
@@ -112,10 +121,15 @@ footer
 			<p>
 				<input class="submit" type="submit" value="Submit">
 			</p>
+			<p>
+			<label for="cemail">E-Mail (required)</label>
+			<input id="cemail" type="email" name="email" required="" aria-required="true" class="error" aria-invalid="true"><label id="cemail-error" class="error" for="cemail">This field is required.</label>
+			</p>
 		</form>
 		</div>
 		<div class='display' id = 'logIn'>
 			<form class="cmxform" id="signupForm" method="get" action=ready() novalidate="novalidate"> 
+				<fieldset>
 				<legend>Log in form</legend>
 				<p>
 				<label for="username">Username</label>
@@ -132,6 +146,7 @@ footer
 				<p>
 					<input class="submit" type="submit" value="Submit">
 				</p>
+			</fieldset>
 			</form>
 		</div>
 		<div class='display' id="gameBoard">
