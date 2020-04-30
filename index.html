@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./register.js"></script>
 		<script type="text/javascript" src="./logIn.js"></script>
+		<script type="text/javascript" src="./settings.js"></script>
 
 		<title>Pacman</title>
 		<style type="text/css">
@@ -84,6 +85,7 @@ footer
 			<a onclick="showAboutDialog()" href="#">About</a>
 			</br>			
 			<a onclick="switchDivs('gameBoard')" href="#">Game Board</a>
+			
 		</nav>
 
 		<contet>
@@ -147,6 +149,78 @@ footer
 			</fieldset>
 			</form>
 		</div>
+		<div class='display' id="settings">
+			<strong>Settings:</strong>
+			<form id="settingsForm">
+				<label for="keyboardsButtons">keyboards buttons</label>
+				<input id="keyboardsButtons" name="keyboardsButtons" type="text" >	
+				<label for="numberOfBalls">number of balls (between 50 to 90)</label>
+				<input id="numberOfBalls" name="numberOfBalls" type="text" >	
+				<fieldset id="colorsBalls1">
+					<legend>Colors (select three colors)</legend>
+					<label for="red">
+					    <input type="checkbox" id="red" value="red" name="color" disabled="disabled">Red
+					</label>
+					<label for="yellow">
+						<input type="checkbox" id="yellow" value="yellow" name="color" disabled="disabled">Yellow
+					</label>
+					<label for="green">
+						<input type="checkbox" id="green" value="green" name="color" disabled="disabled">Green
+					</label>
+					<label for="blue">
+						<input type="checkbox" id="blue" value="blue" name="color" disabled="disabled">Blue
+					</label>
+					<label for="purple">
+						<input type="checkbox" id="purple" value="purple" name="color" disabled="disabled">Purple
+					</label>
+				</fieldset>
+				<fieldset id="colorsBalls2">
+					<legend>Colors (select three colors)</legend>
+					<label for="red">
+					    <input type="checkbox" id="red" value="red" name="color" disabled="disabled">Red
+					</label>
+					<label for="yellow">
+						<input type="checkbox" id="yellow" value="yellow" name="color" disabled="disabled">Yellow
+					</label>
+					<label for="green">
+						<input type="checkbox" id="green" value="green" name="color" disabled="disabled">Green
+					</label>
+					<label for="blue">
+						<input type="checkbox" id="blue" value="blue" name="color" disabled="disabled">Blue
+					</label>
+					<label for="purple">
+						<input type="checkbox" id="purple" value="purple" name="color" disabled="disabled">Purple
+					</label>
+				</fieldset>
+				<fieldset id="colorsBalls3">
+					<legend>Colors (select three colors)</legend>
+					<label for="red">
+					    <input type="checkbox" id="red" value="red" name="color" disabled="disabled">Red
+					</label>
+					<label for="yellow">
+						<input type="checkbox" id="yellow" value="yellow" name="color" disabled="disabled">Yellow
+					</label>
+					<label for="green">
+						<input type="checkbox" id="green" value="green" name="color" disabled="disabled">Green
+					</label>
+					<label for="blue">
+						<input type="checkbox" id="blue" value="blue" name="color" disabled="disabled">Blue
+					</label>
+					<label for="purple">
+						<input type="checkbox" id="purple" value="purple" name="color" disabled="disabled">Purple
+					</label>
+				</fieldset>
+				<label for="timeForAGame">Time for a game (minimum 60 seconds)</label>
+				<input id="timeForAGame" name="timeForAGame" type="text" >	
+				<label for="numOfMonsters">number of monsters (between 1 to 4)</label>
+				<input id="numOfMonsters" name="numOfMonsters" type="text" >
+				<button id="randomSettings" onclick="setRandomSettings()" >random Settings</button>
+				<p>
+					<button class="submit" id="submitSettings" type="submit" value="Submit">Play!</button>
+				</p>
+			</form>
+
+		</div>
 		<div class='display' id="gameBoard">
 			<div id="score">
 				<label for="lblScore">SCORE:</label>
@@ -167,9 +241,12 @@ footer
 		<br>
 		<button onclick="closeAboutDialog()">Close dialog</button>	
 	</dialog>
-
+	<dialog id="incorrectDetailsDialog">
+		<h3>One or more of your details are wrong!</h3>
+	</dialog>
 	<footer>
 		<p>call me </p>
 	</footer>
+
 	</body>
 </html>

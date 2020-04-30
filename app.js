@@ -176,19 +176,26 @@ function UpdatePosition() {
 
 function switchDivs(id){
 
-    	//hide all sections
-    	var section2 = document.getElementById('welcome');
-    	section2.style.visibility="hidden";
-		var section3 = document.getElementById('register');
-    	section3.style.visibility="hidden";
-		var section4 = document.getElementById('logIn');
-		section4.style.visibility="hidden";
-		var section4 = document.getElementById('gameBoard');
-    	section4.style.visibility="hidden";
-    	
-    	//show only one section
-		var selected = document.getElementById(id);
-		selected .style.visibility="visible";
+	
+	    welcome.style.visibility="hidden";
+		var register = document.getElementById('register');
+	    register.style.visibility="hidden";
+		var logIn = document.getElementById('logIn');
+		logIn.style.visibility="hidden";
+		var settings = document.getElementById('settings');
+	    settings.style.visibility="hidden";
+		var gameBoard = document.getElementById('gameBoard');
+	    gameBoard.style.visibility="hidden";
+
+
+	//show only one section	    	
+	var selected = document.getElementById(id);			
+	selected .style.visibility="visible";			
+
+	if(id == 'gameBoard'){
+		Start(); 
+	}
+
 }
 
 function pickDate() {

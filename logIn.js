@@ -41,4 +41,23 @@ $().ready(function() {
 		}
 		
 	});
-	});
+    });
+    
+    function checkDetails(){
+        var userName = logInForm.username.value;
+        var password = logInForm.password.value;
+        var email = logInForm.email.value;
+        var value = localStorage.getItem(email);
+        if(value == userName+password){
+            switchDivs('settings');
+        }
+        else{
+            showIncorrectDetailsDialog();
+            switchDivs('welcome');
+            $("#logInForm").reset();
+        }
+    }
+
+    function  showIncorrectDetailsDialog(){
+        
+    }
