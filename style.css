@@ -1,0 +1,68 @@
+body {
+	position: center; 
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	background-color:  rgb(255, 255, 255); 
+	justify-content:space-around;
+	list-style-type:none;
+	text-align: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size: cover;
+	align-items: center;
+}
+
+header
+{
+	background: rgb(88, 113, 141);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 850px;
+	height: 100px;
+	text-align: center;
+}
+nav
+{
+	background: rgb(123, 144, 189);
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	width: 150px;
+	height: 500px;
+	text-align: center;
+}
+
+aside
+{
+	background: rgb(82, 93, 128);
+	position: absolute;
+	top: 100px;
+	left: 650px;
+	width: 200px;
+	height: 500px;
+	text-align: center;
+}
+.display
+{
+	background: #fff;
+	position: absolute;
+	top: 100px;
+	left: 150px;
+	width: 500px;
+	height: 500px;
+	text-align: center;
+}
+footer
+{
+	background: rgb(44, 67, 82);
+	position: absolute;
+	top: 600px;
+	left: 0px;
+	width: 850px;
+	height: 50px;
+	text-align: center;
+}
+
+#settingsForm{
+	font-size: 13px;
+}

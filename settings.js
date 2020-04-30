@@ -55,12 +55,30 @@ function setRandomSettings(){
 
 }
 
-function checkBoxColors(input) {
+function checkBoxColors5(input) {
+	
+    $('input[type="checkbox"]').on('change', function() {
+        $('input[name="' + input.name + '"]').not(input).prop('checked', false);
+	});
+	color5p = input.value;
+}
+
+function checkBoxColors15(input) {
     
     $('input[type="checkbox"]').on('change', function() {
         $('input[name="' + input.name + '"]').not(input).prop('checked', false);
-    });
+	});
+	
+	color15p = input.value;
 }
 
+function checkBoxColors25(input) {
+    
+    $('input[type="checkbox"]').on('change', function() {
+        $('input[name="' + input.name + '"]').not(input).prop('checked', false);
+	});
+	
+	color25p = input.value;
+}
 
  

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<!-- <script src="./jQuery validation plug-in - main demo_files/jquery.js.download"></script><script src="./jQuery validation plug-in - main demo_files/jquery-1.11.1.js.download"></script>
-		<script src="./jQuery validation plug-in - main demo_files/jquery.validate.js.download"></script> -->
 		<script src="./jqueryvalidation.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./register.js"></script>
@@ -13,66 +12,13 @@
 		<script type="text/javascript" src="./settings.js"></script>
 
 		<title>Pacman</title>
-		<style type="text/css">
-header
-{
-	background: rgb(88, 113, 141);
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 800px;
-	height: 100px;
-	text-align: center;
-}
-nav
-{
-	background: rgb(123, 144, 189);
-	position: absolute;
-	top: 100px;
-	left: 0px;
-	width: 150px;
-	height: 500px;
-	text-align: center;
-}
-
-aside
-{
-	background: rgb(82, 93, 128);
-	position: absolute;
-	top: 100px;
-	left: 650px;
-	width: 150px;
-	height: 500px;
-	text-align: center;
-}
-.display
-{
-	background: #fff;
-	position: absolute;
-	top: 100px;
-	left: 150px;
-	width: 500px;
-	height: 500px;
-	text-align: center;
-}
-footer
-{
-	background: rgb(44, 67, 82);
-	position: absolute;
-	top: 600px;
-	left: 0px;
-	width: 800px;
-	height: 50px;
-	text-align: center;
-}      
-	</style>
 	
 	</head>
 
 	<body>
 
 		<header>
-			<p>title</p>
+			<p>Pacman</p>
 			<input id="lblUserName" type="text" />
 			</br>
 		</header>
@@ -92,18 +38,25 @@ footer
 		</nav>
 
 		<aside>
-			settings for this game:
+			settings:
+			</br>
 			keyboard buttons-
-			balls- color5p 
-			5 points:
+			</br>
+			
+			5 points color:
+			</br>
 			<input id="lblcolor5p" type="text" />
 			</br>
+			15 points color:
 			<input id="lblcolor15p" type="text" />
 			</br>
+			25 points color:
 			<input id="lblcolor25p" type="text" />
 			</br>
+			number of balls:
 			<input id="lblNumOfBalls" type="text"/>
 			</br>
+			number of monsters: 
 			<input id="lblNumOfMonsters" type="text"/>
 			</br>
 		</aside>
@@ -116,7 +69,8 @@ footer
 		</div>
 		<div class='display' id = 'register'>
 			<form class="cmxform" id="signupForm"> 
-			<legend>Validating a complete form</legend>
+			<fieldset>
+			<legend>Please fill your details in the form below:</legend>
 			<p>
 			<label for="firstname">Firstname</label>
 			<input id="firstname" name="firstname" type="text" >
@@ -145,6 +99,7 @@ footer
 			<p>
 				<button class="submit" type="submit" value="Submit">Register</button>
 			</p>
+		</fieldset>
 		</form>
 		</div>
 		<div class='display' id = 'logIn' >
@@ -184,55 +139,55 @@ footer
 				<fieldset id="colorsBalls1">
 					<legend>First color - 5 points:</legend>
 					<label for="red">
-					    <input type="checkbox" id="red1" value="red" name="color1" onclick="checkBoxColors(this)" >Red
+					    <input type="checkbox" id="red1" value="red" name="color1" onclick="checkBoxColors5(this)" >Red
 					 </label> 
 					<label for="yellow">
-						<input type="checkbox" id="yellow1" value="yellow" name="color1" onclick="checkBoxColors(this)" >Yellow
+						<input type="checkbox" id="yellow1" value="yellow" name="color1" onclick="checkBoxColors5(this)" >Yellow
 					</label>
 					<label for="green">
-						<input type="checkbox" id="green1" value="green" name="color1" onclick="checkBoxColors(this)" >Green
+						<input type="checkbox" id="green1" value="green" name="color1" onclick="checkBoxColors5(this)" >Green
 					</label>
 					<label for="blue">
-						<input type="checkbox" id="blue1" value="blue" name="color1" onclick="checkBoxColors(this)">Blue
+						<input type="checkbox" id="blue1" value="blue" name="color1" onclick="checkBoxColors5(this)">Blue
 					</label>
 					<label for="purple">
-						<input type="checkbox" id="purple1" value="purple" name="color1" onclick="checkBoxColors(this)" >Purple
+						<input type="checkbox" id="purple1" value="purple" name="color1" onclick="checkBoxColors5(this)" >Purple
 					</label>
 				</fieldset>
 				<fieldset id="colorsBalls2">
 					<legend>Second color - 15 points:</legend>
 					<label for="red">
-					    <input type="checkbox" id="red2" value="red" name="color2" onclick="checkBoxColors(this)">Red
+					    <input type="checkbox" id="red2" value="red" name="color2" onclick="checkBoxColors15(this)">Red
 					</label>
 					<label for="yellow">
-						<input type="checkbox" id="yellow2" value="yellow" name="color2" onclick="checkBoxColors(this)" >Yellow
+						<input type="checkbox" id="yellow2" value="yellow" name="color2" onclick="checkBoxColors15(this)" >Yellow
 					</label>
 					<label for="green">
-						<input type="checkbox" id="green2" value="green" name="color2" onclick="checkBoxColors(this)">Green
+						<input type="checkbox" id="green2" value="green" name="color2" onclick="checkBoxColors15(this)">Green
 					</label>
 					<label for="blue">
-						<input type="checkbox" id="blue2" value="blue" name="color2" onclick="checkBoxColors(this)" >Blue
+						<input type="checkbox" id="blue2" value="blue" name="color2" onclick="checkBoxColors15(this)" >Blue
 					</label>
 					<label for="purple">
-						<input type="checkbox" id="purple2" value="purple" name="color2" onclick="checkBoxColors(this)">Purple
+						<input type="checkbox" id="purple2" value="purple" name="color2" onclick="checkBoxColors15(this)">Purple
 					</label>
 				</fieldset>
 				<fieldset id="colorsBalls3">
 					<legend>Third color - 25 points:</legend>
 					<label for="red">
-					    <input type="checkbox" id="red3" value="red" name="color3" onclick="checkBoxColors(this)" >Red
+					    <input type="checkbox" id="red3" value="red" name="color3" onclick="checkBoxColors25(this)" >Red
 					</label>
 					<label for="yellow">
-						<input type="checkbox" id="yellow3" value="yellow" name="color3" onclick="checkBoxColors(this)">Yellow
+						<input type="checkbox" id="yellow3" value="yellow" name="color3" onclick="checkBoxColors25(this)">Yellow
 					</label>
 					<label for="green">
-						<input type="checkbox" id="green3" value="green" name="color3" onclick="checkBoxColors(this)" >Green
+						<input type="checkbox" id="green3" value="green" name="color3" onclick="checkBoxColors25(this)" >Green
 					</label>
 					<label for="blue">
-						<input type="checkbox" id="blue3" value="blue" name="color3" onclick="checkBoxColors(this)">Blue
+						<input type="checkbox" id="blue3" value="blue" name="color3" onclick="checkBoxColors25(this)">Blue
 					</label>
 					<label for="purple">
-						<input type="checkbox" id="purple3" value="purple" name="color3" onclick="checkBoxColors(this)">Purple
+						<input type="checkbox" id="purple3" value="purple" name="color3" onclick="checkBoxColors25(this)">Purple
 					</label>
 				</fieldset>
 				</br>
@@ -263,7 +218,7 @@ footer
 				<input id="lblTime" type="text" />
 			</div>
 			<div id="game">
-				<canvas id="canvas" height="550" width="550"></canvas>
+				<canvas id="canvas" height="470" width="470"></canvas>
 			</div>
 		</div>
 	</contet>
