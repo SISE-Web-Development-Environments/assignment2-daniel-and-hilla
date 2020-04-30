@@ -1,8 +1,9 @@
 
 $().ready(function() {
-	debugger
+	
 	// validate signup form on keyup and submit
 	$("#logInForm").validate({
+        
 		rules: {
 			firstname: "required",
 			lastname: "required",
@@ -35,8 +36,9 @@ $().ready(function() {
 		submitHandler: function(){
 			var isValid = $("#logInForm").valid();
 			if(isValid){
-				//chack details - add function and move to game 
-				$("#logInForm").reset();
+                //chack details - add function and move to game 
+                checkDetails();
+				
 			}
 		}
 		
@@ -44,20 +46,23 @@ $().ready(function() {
     });
     
     function checkDetails(){
-        var userName = logInForm.username.value;
-        var password = logInForm.password.value;
-        var email = logInForm.email.value;
+        
+        var userName = logInForm.usernameLogIn.value;
+        var password = logInForm.passwordLogIn.value;
+        var email = logInForm.emailLogIn.value;
         var value = localStorage.getItem(email);
         if(value == userName+password){
+            lblUserName.value = userName;
+            document.getElementById("logInForm").reset();
             switchDivs('settings');
         }
         else{
             showIncorrectDetailsDialog();
             switchDivs('welcome');
-            $("#logInForm").reset();
         }
+       
     }
 
     function  showIncorrectDetailsDialog(){
-        
+        document.getElementById("incorrectDetailsDialog").showModal();
     }

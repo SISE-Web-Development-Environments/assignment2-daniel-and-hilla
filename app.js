@@ -6,13 +6,17 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var color5p;
+var color15p;
+var color25p;
+var totalTimeGame;
+var numberOfMonsters;
 
 $(document).ready(function() {
-	switchDivs('welcome')
-	context = canvas.getContext("2d");
-
+		switchDivs('welcome')
+		context = canvas.getContext("2d");
+		
 });
-
 
 function Start() {
 	board = new Array();
@@ -27,12 +31,12 @@ function Start() {
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
 		for (var j = 0; j < 10; j++) {
 			if (
-				(i == 3 && j == 3) ||
-				(i == 3 && j == 4) ||
-				(i == 3 && j == 5) ||
-				(i == 6 && j == 1) ||
-				(i == 6 && j == 2) ||
-				(i == 0 && j == 0)
+				(i == 3 && j == 3) || (i == 8 && j == 6) ||
+				(i == 3 && j == 4) || (i == 7 && j == 8) ||
+				(i == 3 && j == 5) || (i == 1 && j == 6) ||
+				(i == 6 && j == 1) || (i == 0 && j == 3) ||
+				(i == 6 && j == 2) || (i == 4 && j == 0) ||
+				(i == 0 && j == 0) || (i == 4 && j == 0)
 			) {
 				board[i][j] = 4;
 			} else {
@@ -52,10 +56,23 @@ function Start() {
 			}
 		}
 	}
-	while (food_remain > 0) {
+	var food5p = food_remain*0.6;
+	var food15p = food_remain*0.3;
+	var food25p = food_remain*0.1;
+	while (food5p > 0) {
 		var emptyCell = findRandomEmptyCell(board);
-		board[emptyCell[0]][emptyCell[1]] = 1;
-		food_remain--;
+		board[emptyCell[0]][emptyCell[1]] = 5;
+		food5p--;
+	}
+	while (food15p > 0) {
+		var emptyCell = findRandomEmptyCell(board);
+		board[emptyCell[0]][emptyCell[1]] = 15;
+		food15p--;
+	}
+	while (food25p > 0) {
+		var emptyCell = findRandomEmptyCell(board);
+		board[emptyCell[0]][emptyCell[1]] = 25;
+		food25p--;
 	}
 	keysDown = {};
 	addEventListener(
@@ -73,6 +90,7 @@ function Start() {
 		false
 	);
 	interval = setInterval(UpdatePosition, 250);
+
 }
 
 function findRandomEmptyCell(board) {
@@ -107,8 +125,8 @@ function Draw() {
 	for (var i = 0; i < 10; i++) {
 		for (var j = 0; j < 10; j++) {
 			var center = new Object();
-			center.x = i * 60 + 30;
-			center.y = j * 60 + 30;
+			center.x = i * 40 + 20;
+			center.y = j * 40 + 20;
 			if (board[i][j] == 2) {
 				context.beginPath();
 				context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
@@ -119,14 +137,24 @@ function Draw() {
 				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
 				context.fillStyle = "black"; //color
 				context.fill();
-			} else if (board[i][j] == 1) {
+			} else if (board[i][j] == 5) { //food 5 points
 				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
+				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
+				context.fillStyle = "blue"; //color
+				context.fill();
+			} else if (board[i][j] == 15) { //food 5 points
+				context.beginPath();
+				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
+				context.fillStyle = "red"; //color
+				context.fill();
+			} else if (board[i][j] == 25) { //food 5 points
+				context.beginPath();
+				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
+				context.fillStyle = "purple"; //color
 				context.fill();
 			} else if (board[i][j] == 4) {
 				context.beginPath();
-				context.rect(center.x - 30, center.y - 30, 60, 60);
+				context.rect(center.x - 30, center.y - 30, 40, 40);
 				context.fillStyle = "grey"; //color
 				context.fill();
 			}
@@ -137,7 +165,7 @@ function Draw() {
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
-	if (x == 1) {
+	if (x == 5 || x == 15 || x == 25) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
 		}
@@ -157,8 +185,14 @@ function UpdatePosition() {
 			shape.i++;
 		}
 	}
-	if (board[shape.i][shape.j] == 1) {
-		score++;
+	if (board[shape.i][shape.j] == 5) {
+		score +=5;
+	}
+	else if(board[shape.i][shape.j] == 15){
+		score +=15;
+	}
+	else if(board[shape.i][shape.j] == 25){
+		score +=25;
 	}
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
@@ -169,14 +203,19 @@ function UpdatePosition() {
 	if (score == 50) {
 		window.clearInterval(interval);
 		window.alert("Game completed");
-	} else {
+	} else if(totalTimeGame < time_elapsed) {
+		window.clearInterval(interval);
+		window.alert("Game Over!!!");
+	}
+	else{
 		Draw();
+
 	}
 }
 
 function switchDivs(id){
 
-	
+		var welcome = document.getElementById('welcome');
 	    welcome.style.visibility="hidden";
 		var register = document.getElementById('register');
 	    register.style.visibility="hidden";
@@ -185,7 +224,7 @@ function switchDivs(id){
 		var settings = document.getElementById('settings');
 	    settings.style.visibility="hidden";
 		var gameBoard = document.getElementById('gameBoard');
-	    gameBoard.style.visibility="hidden";
+		gameBoard.style.visibility="hidden";
 
 
 	//show only one section	    	
@@ -211,5 +250,19 @@ function showAboutDialog() {
 
 function closeAboutDialog() { 
 	document.getElementById("aboutDialog").close(); 
+}
+
+function setSettings(){
+	food_remain = settingsForm.numberOfBalls.value;
+	lblNumOfBalls.value = food_remain;
+	color5p = settingsForm.colorsBalls1.value;
+	lblcolor5p.value = color5p; 
+	color15p = settingsForm.colorsBalls2.value;
+	lblcolor15p.value = color15p; 
+	color25p = settingsForm.colorsBalls3.value;
+	lblcolor25p.value = color25p;
+	numberOfMonsters = settingsForm.numOfMonsters.value;
+	lblNumOfMonsters.value = numberOfMonsters;  
+	totalTimeGame = settingsForm.timeForAGame.value;
 }
 

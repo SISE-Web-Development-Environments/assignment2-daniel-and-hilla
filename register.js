@@ -1,6 +1,5 @@
 
 $().ready(function() {
-	debugger
 	// validate signup form on keyup and submit
 	$("#signupForm").validate({
 		rules: {
@@ -46,10 +45,19 @@ $().ready(function() {
 		submitHandler: function(){
 			var isValid = $("#signupForm").valid();
 			if(isValid){
-				//save details - add function and move to game 
-				$("#signupForm").reset();
+                //save details - add function and move to game 
+                saveDetails();
+                document.getElementById("signupForm").reset();
+                switchDivs('settings');
 			}
 		}
 		
 	});
-	});
+    });
+    
+    function saveDetails(){
+        var userName = signupForm.username.value;
+        var password = signupForm.password.value;
+        var email = signupForm.email.value;
+        localStorage.setItem(email, userName+password);
+    } 

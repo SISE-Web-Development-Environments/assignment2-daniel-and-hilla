@@ -1,12 +1,12 @@
 
 $().ready(function() {
-	debugger
+	
 	// validate signup form on keyup and submit
-	$("#signupForm").validate({
+	$("#settingsForm").validate({
 		rules: {
 			numberOfBalls: {
 				required: true,
-                regex: /^[0-9]+$/,
+               // regex: /^[0-9]*$/,
                 range: [50, 90]
 			},
 			timeForAGame: {
@@ -16,7 +16,8 @@ $().ready(function() {
 			numOfMonsters: {
 				required: true,
 				range: [1, 4]
-			},
+            },
+            
 		},
 		messages: {
             numberOfBalls: {
@@ -35,12 +36,14 @@ $().ready(function() {
 		},
 		
 		submitHandler: function(){
-			var isValid = $("#signupForm").valid();
+			var isValid = $("#settingsForm").valid();
 			if(isValid){
-                //save details - add function and move to game 
-                saveDetails();
-                switchDivs(settings);
-				$("#signupForm").reset();
+                // move to game 
+                
+                setSettings();
+                document.getElementById("settingsForm").reset();
+                switchDivs('gameBoard');
+                
 			}
 		}
 		
@@ -51,3 +54,13 @@ $().ready(function() {
 function setRandomSettings(){
 
 }
+
+function checkBoxColors(input) {
+    
+    $('input[type="checkbox"]').on('change', function() {
+        $('input[name="' + input.name + '"]').not(input).prop('checked', false);
+    });
+}
+
+
+ 
