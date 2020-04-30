@@ -13,22 +13,6 @@ $(document).ready(function() {
 
 });
 
-// $.validator.setDefaults({
-// 	submitHandler: function() {
-// 		alert("submitted!");
-// 	}
-// });
-
-
-	// // propose username by combining first- and lastname
-	// $("#username").focus(function() {
-	// 	var firstname = $("#firstname").val();
-	// 	var lastname = $("#lastname").val();
-	// 	if (firstname && lastname && !this.value) {
-	// 		this.value = firstname + "." + lastname;
-	// 	}
-	// });
-
 
 function Start() {
 	board = new Array();
