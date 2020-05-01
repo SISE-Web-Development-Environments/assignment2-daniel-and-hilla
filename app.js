@@ -12,6 +12,11 @@ var color25p;
 var totalTimeGame;
 var numberOfMonsters;
 var food_remain;
+var up=37;
+var down=39;
+var right=40;
+var left=38;
+var lastMove;
 
 $(document).ready(function() {
 		switchDivs('welcome')
@@ -91,6 +96,8 @@ function Start() {
 		},
 		false
 	);
+	
+	
 	interval = setInterval(UpdatePosition, 250);
 
 }
@@ -106,16 +113,16 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[left]) {  //left
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[right]) { //right
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[up]) { //up
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[down]) { //down
 		return 4;
 	}
 }
@@ -131,12 +138,12 @@ function Draw() {
 			center.y = j * 40 + 20;
 			if (board[i][j] == 2) {
 				context.beginPath();
-				context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+				context.arc(center.x, center.y, 30, -1.15 , 1.45 * Math.PI); // half circle
 				context.lineTo(center.x, center.y);
 				context.fillStyle = pac_color; //color
 				context.fill();
 				context.beginPath();
-				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+				context.arc(center.x - 8, center.y - 12, 5, 0, 2 * Math.PI); // circle
 				context.fillStyle = "black"; //color
 				context.fill();
 			} else if (board[i][j] == 5) { //food 5 points
@@ -167,6 +174,7 @@ function Draw() {
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
+	lastMove = x;
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
