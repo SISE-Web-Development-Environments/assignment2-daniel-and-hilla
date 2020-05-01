@@ -12,11 +12,11 @@ var color25p;
 var totalTimeGame;
 var numberOfMonsters;
 var food_remain;
-var up=37;
-var down=39;
-var right=40;
-var left=38;
-var lastMove;
+var up = 37;
+var down = 39;
+var right = 40;
+var left = 38;
+var lastMove = 1;
 
 $(document).ready(function() {
 		switchDivs('welcome')
@@ -138,7 +138,8 @@ function Draw() {
 			center.y = j * 40 + 20;
 			if (board[i][j] == 2) {
 				context.beginPath();
-				context.arc(center.x, center.y, 30, -1.15 , 1.45 * Math.PI); // half circle
+				context.arc(center.x, center.y, 25, -4.2 , 0.4 * Math.PI); // face down
+				//context.arc(center.x, center.y, 25, -2.8 , 0.9 * Math.PI); // face to left
 				context.lineTo(center.x, center.y);
 				context.fillStyle = pac_color; //color
 				context.fill();
@@ -267,11 +268,8 @@ function closeAboutDialog() {
 function setSettings(){
 	food_remain = settingsForm.numberOfBalls.value;
 	lblNumOfBalls.value = food_remain;
-	//color5p = settingsForm.colorsBalls1.value;
 	lblcolor5p.value = color5p; 
-	// color15p = settingsForm.colorsBalls2.value;
 	lblcolor15p.value = color15p; 
-	// color25p = settingsForm.colorsBalls3.value;
 	lblcolor25p.value = color25p;
 	numberOfMonsters = settingsForm.numOfMonsters.value;
 	lblNumOfMonsters.value = numberOfMonsters;  
