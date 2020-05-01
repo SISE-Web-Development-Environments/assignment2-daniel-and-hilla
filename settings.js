@@ -58,8 +58,10 @@ function setRandomSettings(){
 function checkBoxColors5(input) {
 	
     $('input[type="checkbox"]').on('change', function() {
-        $('input[name="' + input.name + '"]').not(input).prop('checked', false);
+		$('input[name="' + input.name + '"]').not(input).prop('checked', false);
+		input.prop('checked', true);
 	});
+	
 	color5p = input.value;
 }
 
