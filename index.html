@@ -37,7 +37,8 @@
 		<a onclick="switchDivs('settings')" href="#">Settings</a>
 		</nav>
 
-		<aside>
+		<aside >
+			<div id = "gameSettings">
 			settings:
 			</br>
 			keyboard buttons-
@@ -59,6 +60,12 @@
 			number of monsters: 
 			<input id="lblNumOfMonsters" type="text"/>
 			</br>
+			life: 
+			<input id="lblLife" type="text"/>
+			</br>
+			Total game time: 
+			<input id="lblTotalGameTime" type="text"/>
+		</div>
 		</aside>
 
 		<contet>
@@ -142,7 +149,7 @@
 					    <input type="radio" id="color11" value="red" name="color1" onclick="checkBoxColors5(this.id)" >Red
 					 </label> 
 					<label for="yellow">
-						<input type="radio" id="color12" value="yellow" name="color1" onclick="checkBoxColors5(this.id)" >Yellow
+						<input type="radio" id="color12" value="orange" name="color1" onclick="checkBoxColors5(this.id)" >Orange
 					</label>
 					<label for="green">
 						<input type="radio" id="color13" value="green" name="color1" onclick="checkBoxColors5(this.id)" >Green
@@ -160,7 +167,7 @@
 					    <input type="radio" id="color21" value="red" name="color2" onclick="checkBoxColors15(this.id)">Red
 					</label>
 					<label for="yellow">
-						<input type="radio" id="color22" value="yellow" name="color2" onclick="checkBoxColors15(this.id)" >Yellow
+						<input type="radio" id="color22" value="orange" name="color2" onclick="checkBoxColors15(this.id)" >Orange
 					</label>
 					<label for="green">
 						<input type="radio" id="color23" value="green" name="color2" onclick="checkBoxColors15(this.id)">Green
@@ -178,7 +185,7 @@
 					    <input type="radio" id="color31" value="red" name="color3" onclick="checkBoxColors25(this.id)" >Red
 					</label>
 					<label for="yellow">
-						<input type="radio" id="color32" value="yellow" name="color3" onclick="checkBoxColors25(this.id)">Yellow
+						<input type="radio" id="color32" value="orange" name="color3" onclick="checkBoxColors25(this.id)">Orange
 					</label>
 					<label for="green">
 						<input type="radio" id="color33" value="green" name="color3" onclick="checkBoxColors25(this.id)" >Green
@@ -218,7 +225,7 @@
 				<input id="lblTime" type="text" />
 			</div>
 			<div id="game">
-				<canvas id="canvas" height="470" width="470"></canvas>
+				<canvas id="canvas" height="450" width="470"></canvas>
 			</div>
 		</div>
 	</contet>

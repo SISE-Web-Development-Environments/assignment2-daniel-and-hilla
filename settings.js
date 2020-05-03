@@ -94,7 +94,7 @@ function setRandomTimeOfGame(){
 }
 
 function setRandomColors(){
-    var colors = ["red", "yellow", "green", "blue", "purple"];
+    var colors = ["red", "orange", "green", "blue", "purple"];
     var random1 = Math.floor(Math.random() * 5);
     var random2 = Math.floor(Math.random() * 5);
     var random3 = Math.floor(Math.random() * 5);
