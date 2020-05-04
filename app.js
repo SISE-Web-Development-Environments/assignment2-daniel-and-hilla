@@ -17,10 +17,10 @@ var bonusLocation;
 var cellContant; 
 var bonusCellContant;
 var food_remain;
-var up = 37;
-var down = 39;
-var right = 40;
-var left = 38;
+var up = 38;
+var down = 40;
+var right = 39;
+var left = 37;
 var lastMove;
 
 $(document).ready(function() {
@@ -133,8 +133,8 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 250);
-	monstersInterval = setInterval(UpdateMonstersPosition, 1500);
+	interval = setInterval(UpdatePosition, 100);
+	monstersInterval = setInterval(UpdateMonstersPosition, 500);
 }
 
 function findRandomEmptyCell(board) {
@@ -148,16 +148,16 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[left]) {  //up
+	if (keysDown[up]) {  //up
 		return 1;
 	}
-	if (keysDown[right]) { //down
+	if (keysDown[down]) { //down
 		return 2;
 	}
-	if (keysDown[up]) { //left
+	if (keysDown[left]) { //left
 		return 3;
 	}
-	if (keysDown[down]) { //right
+	if (keysDown[right]) { //right
 		return 4;
 	}
 }
@@ -329,16 +329,25 @@ function UpdatePosition() {
 	if (score >= 80 && time_elapsed <= 10) {
 		pac_color = "green";
 	}
-	if (score >= 100) {
+	// if (score >= 100) {
+	// 	window.clearInterval(interval);
+	// 	window.clearInterval(monstersInterval); 
+	// 	window.alert("Winner!!!");
+	// 	switchDivs('welcome'); 
+	if(totalTimeGame < time_elapsed) {
 		window.clearInterval(interval);
 		window.clearInterval(monstersInterval); 
-		window.alert("Winner!!!");
-		switchDivs('welcome'); 
-	} else if(totalTimeGame < time_elapsed) {
-		window.clearInterval(interval);
-		window.clearInterval(monstersInterval); 
-		window.alert("You are better then " + score + " points!");
-		switchDivs('welcome'); 
+		if (score >= 100) {
+			window.clearInterval(interval);
+			window.clearInterval(monstersInterval); 
+			window.alert("Winner!!!");
+			switchDivs('welcome'); 
+		}
+		else{
+			window.alert("You are better then " + score + " points!");
+			switchDivs('welcome'); 
+		}
+		
 	} else if(lblLife.value == 0) {
 		window.clearInterval(interval);
 		window.clearInterval(monstersInterval); 

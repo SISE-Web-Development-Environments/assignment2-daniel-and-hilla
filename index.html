@@ -9,7 +9,6 @@
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./register.js"></script>
 		<script type="text/javascript" src="./logIn.js"></script>
-		<script type="text/javascript" src="./settings.js"></script>
 
 		<title>Pacman</title>
 	
@@ -130,15 +129,21 @@
 			</form>
 		</div>
 		<div class='display' id="settings" >
+			<script type="text/javascript" src="./settings.js"></script>
 			<strong>Settings:</strong>
 			<form id="settingsForm">
-				<label for="keyboardsButtons">keyboards buttons</label>
-				</br>
-				<input id="keyboardsButtons" name="keyboardsButtons" type="text" >
+				<p id="keyboardsButtons">keyboards buttons</p>
+				<label for="keyboardsButtonRight">Right:</label>
+				<input id="keyboardsButtonRight" name="keyboardsButtonRight" type="text" size="2">
+				<label for="keyboardsButtonLeft">Left:</label>
+				<input id="keyboardsButtonLeft" name="keyboardsButtonLeft" type="text" size="2" >
+				<label for="keyboardsButtonUp">Up:</label>
+				<input id="keyboardsButtonUp" name="keyboardsButtonUp" type="text" size="2" >
+				<label for="keyboardsButtonDown">Down:</label>
+				<input id="keyboardsButtonDown" name="keyboardsButtonDown" type="text" size="2" >
 				</br>	
 				<label for="numberOfBalls">number of balls (between 50 to 90)</label>
-				</br>
-				<input id="numberOfBalls" name="numberOfBalls" type="text" >	
+				<input id="numberOfBalls" name="numberOfBalls" type="text" size="2" >	
 				</br>
 				<p>Colors - select three different colors</p>
 				<fieldset id="colorsBalls1">
@@ -196,19 +201,13 @@
 					</label>
 				</fieldset>
 				</br>
-				<label for="timeForAGame">Time for a game (minimum 60 seconds)</label>
-				</br>
-				<input id="timeForAGame" name="timeForAGame" type="text" >	
-				</br>
-				<label for="numOfMonsters">number of monsters (between 1 to 4)</label>
-				</br>
-				<input id="numOfMonsters" name="numOfMonsters" type="text" >
-				</br>
+				<label for="timeForAGame">Time for a game (sec)</label>
+				<input id="timeForAGame" name="timeForAGame" type="text" size="2" placeholder="min 60" >	
+				<label for="numOfMonsters">number of monsters </label>
+				<input id="numOfMonsters" name="numOfMonsters" type="text" size="2" placeholder="1 to 4">
 				<p>
 				<button id="randomSettings" onclick="setRandomSettings()" >random Settings</button>
-				</p>
-				<p>
-					<button class="submit" type="submit" value="Submit">Play!</button>
+				<button class="submit" type="submit" value="Submit">Play!</button>
 				</p>
 			</form>
 		</div>

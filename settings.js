@@ -1,7 +1,30 @@
 
 $().ready(function() {
-	
-	// validate signup form on keyup and submit
+	//keys
+document.getElementById('keyboardsButtonRight').addEventListener('keydown', (event)=>{
+    right = event.keyCode;
+    document.getElementById('keyboardsButtonRight').innerText = event.key;
+});
+
+let txtL = document.getElementById('keyboardsButtonLeft');
+txtL.addEventListener('keydown', (event)=>{
+    left = event.keyCode;
+    document.getElementById("keyboardsButtonLeft").innerText = event.key;
+});
+
+let txtD = document.getElementById('keyboardsButtonDown');
+txtD.addEventListener('keydown', (event)=>{
+    down = event.keyCode;
+    document.getElementById("keyboardsButtonDown").innerText = event.key;
+});
+
+let txtU = document.getElementById('keyboardsButtonUp');
+txtU.addEventListener('keydown', (event)=>{
+    up = event.keyCode;
+    document.getElementById("keyboardsButtonUp").innerText = event.key;
+});
+ 
+// validate signup form on keyup and submit
 	$("#settingsForm").validate({
 		rules: {
 			numberOfBalls: {
@@ -36,21 +59,39 @@ $().ready(function() {
 		},
 		
 		submitHandler: function(){
-			var isValid = $("#settingsForm").valid();
-            if (color5p == color15p || color15p == color25p || color5p == color25p){
-                window.alert("you should pick 3 different colors of balls"); 
-            }
-    
-            else if(isValid){
+            var validKeys = isDiffrenetKeys();
+            var validColors = isDifferentColors();
+            var isValid = $("#settingsForm").valid() && validKeys && validColors;
+            if(isValid){
                 setSettings();
                 document.getElementById("settingsForm").reset();
                 switchDivs('gameBoard')
-			}
+			}else{
+                if (!validColors){
+                window.alert("you should pick 3 different colors of balls"); 
+               }
+               if(!validKeys){
+                window.alert("you should pick four different keys"); 
+             }
+            }
+            
 		}
 		
 	});
     });
     
+    function isDifferentColors(){
+        if (color5p == color15p || color15p == color25p || color5p == color25p){
+            return false;
+        }
+        return true;
+    }
+    function isDiffrenetKeys(){
+        if(right == left || right == up || right == down || left == up || left == down || up == down){
+            return false;
+        }
+        return true;
+    }
 
 function setRandomSettings(){
     setDefaultKeyBoards();
@@ -113,4 +154,4 @@ function setRandomNumberOfMonsters(){
     var random1 =  Math.floor(Math.random() * 4) + 1;
     numberOfMonsters = random1;
 }
- 
+
