@@ -103,7 +103,7 @@ function setRandomSettings(){
     lblcolor5p.value = color5p; 
 	lblcolor15p.value = color15p; 
 	lblcolor25p.value = color25p;
-	lblNumOfMonsters.value = numberOfMonsters;  
+    lblNumOfMonsters.value = numberOfMonsters;  
     document.getElementById("settingsForm").reset();
     switchDivs('gameBoard');
 }
@@ -121,7 +121,10 @@ function checkBoxColors25(id) {
 }
 
 function  setDefaultKeyBoards(){
-
+    up = 38;
+    down = 40;
+    right = 39;
+    left = 37;
 }
 
 function setRandomNumberOfBalls(){
@@ -148,6 +151,7 @@ function setRandomColors(){
     color5p = colors[random1];
     color15p = colors[random2];
     color25p = colors[random3];
+
 }
 
 function setRandomNumberOfMonsters(){

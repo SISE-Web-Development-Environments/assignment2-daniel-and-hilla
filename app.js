@@ -33,7 +33,6 @@ function Start() {
 	lblLife.value = 5; 
 	monstersArray =[[0,0],[0,11],[11,0],[11,11]];
 	cellContant = [0,0,0,0]; 
-	bonusLocation = [10,11]; 
 	bonusCellContant = 0; 
 	var food5p = food_remain*0.6;
 	var food15p = food_remain*0.3;
@@ -76,9 +75,6 @@ function Start() {
 			) {
 				board[i][j] = 4;
 			}
-			else if (i==10 & j==11){
-				board[i][j] = 10; //bonus
-			}
 			else if (board[i][j] != 3){
 				var randomNum = Math.random();
 				if (randomNum <= (1.0 * food5p) / cnt) {
@@ -117,7 +113,10 @@ function Start() {
 	board[emptyCell[0]][emptyCell[1]] = 7; //medicine
 	emptyCell = findRandomEmptyCell(board);
 	board[emptyCell[0]][emptyCell[1]] = 8; //clock
-
+	emptyCell = findRandomEmptyCell(board);
+	board[emptyCell[0]][emptyCell[1]] = 10; //bonus
+	bonusLocation = [emptyCell[0],emptyCell[1]]; 
+	
 	keysDown = {};
 	addEventListener(
 		"keydown",
@@ -312,14 +311,17 @@ function UpdatePosition() {
 	}
 	if (didThePacmanFoundTheBonus()){
 		score+=50; 
+		lblScore.value = score;
 		bonusLocation = [-1,-1]; 
 		bonusCellContant = 0; 
 	}
 	if (didTheMonstersFoundMe()){
 		score -= 10;
+		lblScore.value = score;
 		var emptyCell = findRandomEmptyCell(board);
 		shape.i = emptyCell[0];
 		shape.j = emptyCell[1]; 
+		board[shape.i][shape.j] = 0;
 		lblLife.value --; 
 		resetMonstersPosition();
 	}
@@ -394,31 +396,56 @@ function UpdateMonstersPosition() {
 	for (var i = 0; i < numberOfMonsters; i++){
 		if (monstersArray[i][0] < shape.i && board[monstersArray[i][0]+1][monstersArray[i][1]]!=4 && board[monstersArray[i][0]+1][monstersArray[i][1]]!=10
 			&& board[monstersArray[i][0]+1][monstersArray[i][1]]!=3){
-			board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
+			if(cellContant[i] ==2){
+				board[monstersArray[i][0]][monstersArray[i][1]] = 0;
+			}
+			else{
+				board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
+			}
 			monstersArray[i][0]++; 
-			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
-			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
 		else if (monstersArray[i][0] > shape.i && board[monstersArray[i][0]-1][monstersArray[i][1]]!=4 && board[monstersArray[i][0]-1][monstersArray[i][1]]!=10
 			&& board[monstersArray[i][0]-1][monstersArray[i][1]]!=3){
-			board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
+				if(cellContant[i] ==2){
+					board[monstersArray[i][0]][monstersArray[i][1]] = 0; 
+					foundThePacman = true;  
+				}
+				else{
+					board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
+				}
 			monstersArray[i][0]--; 
-			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
-			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
 		else if (monstersArray[i][1] < shape.j && board[monstersArray[i][0]][monstersArray[i][1]+1]!=4 && board[monstersArray[i][0]][monstersArray[i][1]+1]!=10
 			&& board[monstersArray[i][0]][monstersArray[i][1]+1]!=3){
-			board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
+				if(cellContant[i] ==2){
+					board[monstersArray[i][0]][monstersArray[i][1]] = 0; 
+				}
+				else{
+					board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
+				}
 			monstersArray[i][1]++; 
-			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
-			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
 		else if (monstersArray[i][1] > shape.j && board[monstersArray[i][0]][monstersArray[i][1]-1]!=4 && board[monstersArray[i][0]][monstersArray[i][1]-1]!=10
 			&& board[monstersArray[i][0]][monstersArray[i][1]-1]!=3){
-			board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
+				if(cellContant[i] ==2){
+					board[monstersArray[i][0]][monstersArray[i][1]] = 0; 
+				}
+				else{
+					board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
+				}
 			monstersArray[i][1]--; 
-			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
-			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
+		}
+		cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
+		board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
+		if (didTheMonstersFoundMe()){
+			score -= 10;
+			lblScore.value = score;
+			var emptyCell = findRandomEmptyCell(board);
+			shape.i = emptyCell[0];
+			shape.j = emptyCell[1]; 
+			board[shape.i][shape.j] = 0;
+			lblLife.value --; 
+			resetMonstersPosition();
 		}
 	}
 	if (bonusLocation[0] != -1){
@@ -449,7 +476,7 @@ function updateBonusPosition(){
 			}
 		}
 		if (move == 3) { //left
-			if (bonusLocation[1] > 0 && board[bonusLocation[0] - 1][bonusLocation[1]] != 4 && board[bonusLocation[0] + 1][bonusLocation[1]] != 3) {
+			if (bonusLocation[0] > 0 && board[bonusLocation[0] - 1][bonusLocation[1]] != 4 && board[bonusLocation[0] + 1][bonusLocation[1]] != 3) {
 				board[bonusLocation[0]][bonusLocation[1]] = bonusCellContant; 
 				bonusLocation[0]--;
 				bonusCellContant = board[bonusLocation[0]][bonusLocation[1]]; 
@@ -458,7 +485,7 @@ function updateBonusPosition(){
 			}
 		}
 		if (move == 4) { //right
-			if (bonusLocation[1] < 11 && board[bonusLocation[0] + 1][bonusLocation[1]] != 4 && board[bonusLocation[0] + 1][bonusLocation[1]] != 3) {
+			if (bonusLocation[0] < 11 && board[bonusLocation[0] + 1][bonusLocation[1]] != 4 && board[bonusLocation[0] + 1][bonusLocation[1]] != 3) {
 				board[bonusLocation[0]][bonusLocation[1]] = bonusCellContant; 
 				bonusLocation[0]++;
 				bonusCellContant = board[bonusLocation[0]][bonusLocation[1]]; 
@@ -539,7 +566,6 @@ function setSettings(){
 	numberOfMonsters = settingsForm.numOfMonsters.value;
 	lblNumOfMonsters.value = numberOfMonsters;  
 	totalTimeGame = settingsForm.timeForAGame.value;
-	console.log(totalTimeGame);
 	lblTotalGameTime.value = totalTimeGame; 
 }
 
