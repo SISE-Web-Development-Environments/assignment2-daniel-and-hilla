@@ -66,3 +66,8 @@ footer
 #settingsForm{
 	font-size: 13px;
 }
+
+.menuButton{
+	text-align: center;
+	margin-top: 20px;
+}

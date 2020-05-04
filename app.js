@@ -177,7 +177,7 @@ function Draw() {
 				context.fillStyle = "pink";
 				context.fill();
 			}
-			else if (board[i][j] == 2) {
+			else if (board[i][j] == 2) { 
 				if (lastMove == 1){
 					context.beginPath();
 					context.arc(center.x, center.y, 25, -1.15 , 1.45 * Math.PI); // face up
@@ -306,7 +306,7 @@ function UpdatePosition() {
 	else if(board[shape.i][shape.j] == 7){
 		lblLife.value++;
 	}
-	else if(board[shape.i][shape.j] == 7){
+	else if(board[shape.i][shape.j] == 8){
 		totalTimeGame += 15; 
 		lblTotalGameTime.value = totalTimeGame; 
 	}
@@ -331,14 +331,17 @@ function UpdatePosition() {
 	}
 	if (score >= 100) {
 		window.clearInterval(interval);
+		window.clearInterval(monstersInterval); 
 		window.alert("Winner!!!");
 		switchDivs('welcome'); 
 	} else if(totalTimeGame < time_elapsed) {
 		window.clearInterval(interval);
+		window.clearInterval(monstersInterval); 
 		window.alert("You are better then " + score + " points!");
 		switchDivs('welcome'); 
 	} else if(lblLife.value == 0) {
 		window.clearInterval(interval);
+		window.clearInterval(monstersInterval); 
 		window.alert("Loser!");
 		switchDivs('welcome'); 
 	} 
@@ -380,25 +383,29 @@ function resetMonstersPosition(){
 
 function UpdateMonstersPosition() {
 	for (var i = 0; i < numberOfMonsters; i++){
-		if (monstersArray[i][0] < shape.i && board[monstersArray[i][0]+1][monstersArray[i][1]]!=4){
+		if (monstersArray[i][0] < shape.i && board[monstersArray[i][0]+1][monstersArray[i][1]]!=4 && board[monstersArray[i][0]+1][monstersArray[i][1]]!=10
+			&& board[monstersArray[i][0]+1][monstersArray[i][1]]!=3){
 			board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
 			monstersArray[i][0]++; 
 			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
 			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
-		else if (monstersArray[i][0] > shape.i && board[monstersArray[i][0]-1][monstersArray[i][1]]!=4){
+		else if (monstersArray[i][0] > shape.i && board[monstersArray[i][0]-1][monstersArray[i][1]]!=4 && board[monstersArray[i][0]-1][monstersArray[i][1]]!=10
+			&& board[monstersArray[i][0]-1][monstersArray[i][1]]!=3){
 			board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
 			monstersArray[i][0]--; 
 			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
 			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
-		else if (monstersArray[i][1] < shape.j && board[monstersArray[i][0]][monstersArray[i][1]+1]!=4){
+		else if (monstersArray[i][1] < shape.j && board[monstersArray[i][0]][monstersArray[i][1]+1]!=4 && board[monstersArray[i][0]][monstersArray[i][1]+1]!=10
+			&& board[monstersArray[i][0]][monstersArray[i][1]+1]!=3){
 			board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
 			monstersArray[i][1]++; 
 			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
 			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
-		else if (monstersArray[i][1] > shape.j && board[monstersArray[i][0]][monstersArray[i][1]-1]!=4){
+		else if (monstersArray[i][1] > shape.j && board[monstersArray[i][0]][monstersArray[i][1]-1]!=4 && board[monstersArray[i][0]][monstersArray[i][1]-1]!=10
+			&& board[monstersArray[i][0]][monstersArray[i][1]-1]!=3){
 			board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
 			monstersArray[i][1]--; 
 			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
@@ -472,18 +479,21 @@ function didThePacmanFoundTheBonus(){
 
 function switchDivs(id){
 
-		var welcome = document.getElementById('welcome');
-	    welcome.style.visibility="hidden";
-		var register = document.getElementById('register');
-	    register.style.visibility="hidden";
-		var logIn = document.getElementById('logIn');
-		logIn.style.visibility="hidden";
-		var settings = document.getElementById('settings');
-	    settings.style.visibility="hidden";
-		var gameBoard = document.getElementById('gameBoard');
-		gameBoard.style.visibility="hidden";
-		var gameSettings = document.getElementById('gameSettings');
-		gameSettings.style.visibility="hidden";
+	window.clearInterval(interval);
+	window.clearInterval(monstersInterval); 
+
+	var welcome = document.getElementById('welcome');
+    welcome.style.visibility="hidden";
+	var register = document.getElementById('register');
+    register.style.visibility="hidden";
+	var logIn = document.getElementById('logIn');
+	logIn.style.visibility="hidden";
+	var settings = document.getElementById('settings');
+    settings.style.visibility="hidden";
+	var gameBoard = document.getElementById('gameBoard');
+	gameBoard.style.visibility="hidden";
+	var gameSettings = document.getElementById('gameSettings');
+	gameSettings.style.visibility="hidden";
 
 	//show only one section	    	
 	var selected = document.getElementById(id);			

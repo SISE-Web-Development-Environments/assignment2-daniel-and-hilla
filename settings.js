@@ -91,6 +91,7 @@ function setRandomNumberOfBalls(){
 function setRandomTimeOfGame(){
     var random1 =  Math.floor(Math.random() * 60) + 60;
     totalTimeGame = random1;
+    lblTotalGameTime.value = totalTimeGame; 
 }
 
 function setRandomColors(){
