@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+
 		<link rel="stylesheet" type="text/css" href="style.css" />
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -9,7 +10,6 @@
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./register.js"></script>
 		<script type="text/javascript" src="./logIn.js"></script>
-
 		<title>Pacman</title>
 	
 	</head>
@@ -224,14 +224,19 @@
 			<div id="game">
 				<canvas id="canvas" height="450" width="470"></canvas>
 			</div>
+			<button id="musicBtn" class="musicButton" onclick="playOrStopMusic()" >music</button>
+			<audio id="musicPac" src="/music/pacmanSong.mp3"></audio>
 		</div>
 	</contet>
 
 	<dialog id="aboutDialog">
 		<h3>This is a dialog window!</h3>
 		<br>
-		<button onclick="closeAboutDialog()">Close dialog</button>	
-	</dialog>
+		<button class="aboutClick" onclick="closeAboutDialog()">X</button>	
+	</dialog> 
+	<!-- <div id="aboutDialog" title="About"><p>This is a dialog window!</p>
+	</div> -->
+
 	<dialog id="incorrectDetailsDialog">
 		<h3>One or more of your details are wrong!</h3>
 	</dialog>
@@ -239,5 +244,6 @@
 		<p>call me </p>
 	</footer>
 
+	
 	</body>
 </html>

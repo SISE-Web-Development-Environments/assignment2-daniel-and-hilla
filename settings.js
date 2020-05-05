@@ -1,5 +1,7 @@
 
 $().ready(function() {
+
+   
 	//keys
 document.getElementById('keyboardsButtonRight').addEventListener('keydown', (event)=>{
     right = event.keyCode;
@@ -77,7 +79,9 @@ txtU.addEventListener('keydown', (event)=>{
             
 		}
 		
-	});
+    });
+ 
+
     });
     
     function isDifferentColors(){
@@ -158,4 +162,21 @@ function setRandomNumberOfMonsters(){
     var random1 =  Math.floor(Math.random() * 4) + 1;
     numberOfMonsters = random1;
 }
+
+function playOrStopMusic(){
+    if(isPlay){
+        music.pause();
+        isPlay=false;
+    }
+    else{
+        music.play();
+        isPlay=true;
+    }
+}
+
+document.getElementById('aboutDialog').addEventListener('keydown', (event)=>{
+    if(event.keyCode == 27 && isOpenAboutdialog){
+        closeAboutDialog();
+    }
+});
 

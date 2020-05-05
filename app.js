@@ -22,10 +22,14 @@ var down = 40;
 var right = 39;
 var left = 37;
 var lastMove;
+var isPlay=false;
+var music;
+var isOpenAboutdialog = false;
 
 $(document).ready(function() {
 		switchDivs('welcome')
 		context = canvas.getContext("2d");
+		music = document.getElementById('musicPac');
 });
 
 function Start() {
@@ -179,45 +183,45 @@ function Draw() {
 			else if (board[i][j] == 2) { 
 				if (lastMove == 1){
 					context.beginPath();
-					context.arc(center.x, center.y, 25, -1.15 , 1.45 * Math.PI); // face up
+					context.arc(center.x, center.y, 15, -1.15 , 1.45 * Math.PI); // face up
 					context.lineTo(center.x, center.y);
 					context.fillStyle = pac_color; //color
 					context.fill();
 					context.beginPath();
-					context.arc(center.x - 8, center.y - 12, 5, 0, 2 * Math.PI); // circle
+					context.arc(center.x - 4, center.y - 5, 4, 0, 2 * Math.PI); // circle
 					context.fillStyle = "black"; //color
 					context.fill();
 				}
 				else if (lastMove == 2){
 					context.beginPath();
-					context.arc(center.x, center.y, 25, -4.2 , 0.4 * Math.PI); // face down
+					context.arc(center.x, center.y, 15, -4.2 , 0.4 * Math.PI); // face down
 					context.lineTo(center.x, center.y);
 					context.fillStyle = pac_color; //color
 					context.fill();
 					context.beginPath();
-					context.arc(center.x - 8, center.y - 12, 5, 0, 2 * Math.PI); // circle
+					context.arc(center.x - 4, center.y - 8, 4, 0, 2 * Math.PI); // circle
 					context.fillStyle = "black"; //color
 					context.fill();
 				}
 				else if (lastMove == 3){
 					context.beginPath();
-					context.arc(center.x, center.y, 25, -2.8 , 0.9 * Math.PI); // face to left
+					context.arc(center.x, center.y, 15, -2.8 , 0.9 * Math.PI); // face to left
 					context.lineTo(center.x, center.y);
 					context.fillStyle = pac_color; //color
 					context.fill();
 					context.beginPath();
-					context.arc(center.x - 8, center.y - 12, 5, 0, 2 * Math.PI); // circle
+					context.arc(center.x - 4, center.y - 8, 4, 0, 2 * Math.PI); // circle
 					context.fillStyle = "black"; //color
 					context.fill();
 				}
 				else if (lastMove == 4){
 					context.beginPath();
-					context.arc(center.x, center.y, 25, 0.15 , 1.85 * Math.PI); // face to right
+					context.arc(center.x, center.y, 15, 0.15 , 1.85 * Math.PI); // face to right
 					context.lineTo(center.x, center.y);
 					context.fillStyle = pac_color; //color
 					context.fill();
 					context.beginPath();
-					context.arc(center.x - 8, center.y - 12, 5, 0, 2 * Math.PI); // circle
+					context.arc(center.x - 4, center.y - 8, 4, 0, 2 * Math.PI); // circle
 					context.fillStyle = "black"; //color
 					context.fill();
 				}
@@ -258,6 +262,18 @@ function Draw() {
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
 				context.fillStyle = "yellow"; //color
 				context.fill();
+				//context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
+				// var img = document.getElementById("imageHeart");
+				//context.drawImage(img, center.x, center.y, 1, 1);
+				// context.arc(center.x, center.y, 10, 0, 2 * Math.PI);
+				// context.clearArc(0, 0, c.width, c.height); 
+				//var img = document.getElementById("lamp")
+				// var pat = ctx.createPattern(img, 'no-repeat');
+				// context.arc(0, 0, 150, 100);
+				// ctx.fillStyle = pat;
+				// ctx.fill();
+				//context.fillStyle = "yellow"; //color
+				//context.fill();
 			}	
 		}
 	}
@@ -342,10 +358,14 @@ function UpdatePosition() {
 		if (score >= 100) {
 			window.clearInterval(interval);
 			window.clearInterval(monstersInterval); 
+			isPlay=true;
+		    playOrStopMusic();
 			window.alert("Winner!!!");
 			switchDivs('welcome'); 
 		}
 		else{
+			isPlay=true;
+	    	playOrStopMusic();
 			window.alert("You are better then " + score + " points!");
 			switchDivs('welcome'); 
 		}
@@ -353,8 +373,11 @@ function UpdatePosition() {
 	} else if(lblLife.value == 0) {
 		window.clearInterval(interval);
 		window.clearInterval(monstersInterval); 
+		isPlay=true;
+		playOrStopMusic();
 		window.alert("Loser!");
 		switchDivs('welcome'); 
+		
 	} 
 	else {
 		Draw();
@@ -537,7 +560,9 @@ function switchDivs(id){
 
 	if(id == 'gameBoard'){
 		gameSettings.style.visibility="visible";
+		playOrStopMusic();
 		Start(); 
+		
 	}
 
 }
@@ -550,11 +575,13 @@ function pickDate() {
 }
 
 function showAboutDialog() { 
+	isOpenAboutdialog = true;
 	document.getElementById("aboutDialog").showModal(); 
 } 
 
 function closeAboutDialog() { 
 	document.getElementById("aboutDialog").close(); 
+	isOpenAboutdialog = false;
 }
 
 function setSettings(){
@@ -570,3 +597,26 @@ function setSettings(){
 }
 
 
+
+// document.getElementById('aboutDialog').addEventListener('click', function(e){   
+// 	if (!(document.getElementById('aboutDialog').contains(e.target))){
+// 		closeAboutDialog();
+// 	} 
+// });
+
+// document.addEventListener("click", (evt) => {
+//     const aboutElement = document.getElementById("aboutDialog");
+//     let targetElement = evt.target; // clicked element
+    
+//         if (targetElement != aboutElement) {
+//             closeAboutDialog();
+//         }
+// });
+
+// $("aboutDialog").bind( "clickoutside", function(event){
+// 	closeAboutDialog();
+//   });
+        
+// function showAboutDialog2(){
+//     $("#aboutDialog").dialog();
+//   } 
