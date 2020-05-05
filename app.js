@@ -30,8 +30,17 @@ $(document).ready(function() {
 		switchDivs('welcome')
 		context = canvas.getContext("2d");
 		music = document.getElementById('musicPac');
+		init();
 		
 });
+
+function init(){
+	var userName = "p";
+	var password = "p";
+	var email = 
+	sessionStorage.setItem(email, userName+password);
+}
+
 
 function Start() {
 	lastMove = 4;

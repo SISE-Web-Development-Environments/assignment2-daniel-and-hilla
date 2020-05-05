@@ -82,6 +82,6 @@ $().ready(function() {
     function saveDetails(){
         var userName = signupForm.username.value;
         var password = signupForm.password.value;
-        var email = signupForm.email.value;
-        localStorage.setItem(email, userName+password);
+        //var email = signupForm.email.value;
+        sessionStorage.setItem(userName, password);
     } 

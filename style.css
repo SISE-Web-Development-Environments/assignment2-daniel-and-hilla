@@ -131,11 +131,12 @@ footer
 	display: none;
 	position: fixed; 
 	padding-top: 50px;
-	left: 300px; 
-	top: 300px;
+	left: 500px; 
+	top: 200px;
 	width: 400px;
 	height: 200px; 
-	background-color: rgb(0, 0, 0, 0.7);
+	background-color: black(0,0,0, 1);
+	color: black;
 	justify-content: center;
 	align-items: center;
 	border-width: 4px;
@@ -144,7 +145,7 @@ footer
    
   .modal-content {
 	position: relative; 
-	background-color: white;
+	background-color:#FFA07A(0,0,0, 1);
 	padding: 20px; 
 	margin: auto; 
 	width: 75%;  
@@ -161,6 +162,11 @@ footer
 	color: lightgray; 
 	font-size: 24px;  
 	font-weight: bold;
+	top: 3px;
+	right: 10px;
+	height: 5px;
+	width: 10px;
+	position: absolute;
   }
   .close-btn:hover {
 	color: darkgray;

@@ -15,10 +15,10 @@ $().ready(function() {
 				minlength: 6
 			},
 
-			email: {
-				required: true,
-				email: true
-			},
+			// email: {
+			// 	required: true,
+			// 	email: true
+			// },
 		},
 		messages: {
 				username: {
@@ -30,7 +30,7 @@ $().ready(function() {
 					minlength: "Your password must be at least 6 characters long",
 					regex: "Please insert a valid password"
 				},
-				email: "Please enter a valid email address",
+				// email: "Please enter a valid email address",
 		},
 		
 		submitHandler: function(){
@@ -48,9 +48,9 @@ $().ready(function() {
         
         var userName = logInForm.usernameLogIn.value;
         var password = logInForm.passwordLogIn.value;
-        var email = logInForm.emailLogIn.value;
-        var value = localStorage.getItem(email);
-        if(value == userName+password){
+        //var email = logInForm.emailLogIn.value;
+        var value = sessionStorage.getItem(userName);
+        if(value == password){
             lblUserName.value = "Hello " + userName;
             document.getElementById("logInForm").reset();
             switchDivs('settings');
