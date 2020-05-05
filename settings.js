@@ -31,7 +31,7 @@ txtU.addEventListener('keydown', (event)=>{
 		rules: {
 			numberOfBalls: {
 				required: true,
-               // regex: /^[0-9]*$/,
+                //regex: /^[0-9]*$/,
                 range: [50, 90]
 			},
 			timeForAGame: {

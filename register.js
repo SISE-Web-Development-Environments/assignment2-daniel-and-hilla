@@ -7,6 +7,7 @@ $().ready(function() {
 			lastname: "required",
 			username: {
 				required: true,
+				//regex: /^([a-z]+\s)*[a-z]+$/,
 				minlength: 2
 			},
 			password: {
