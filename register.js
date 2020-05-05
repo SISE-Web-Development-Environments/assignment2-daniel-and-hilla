@@ -1,17 +1,31 @@
 
+$.validator.addMethod("regex",
+                function (value, element, regexp) {
+                    var re = new RegExp(regexp);
+                    return this.optional(element) || re.test(value);
+                },"Please check your input."
+            );
+
+
 $().ready(function() {
 	// validate signup form on keyup and submit
 	$("#signupForm").validate({
 		rules: {
-			firstname: "required",
-			lastname: "required",
+			firstname: {
+				required: true,
+				regex: /^([^0-9]*)$/
+			},
+			lastname: {
+				required: true,
+				regex: /^([^0-9]*)$/
+			},
 			username: {
 				required: true,
-				//regex: /^([a-z]+\s)*[a-z]+$/,
 				minlength: 2
 			},
 			password: {
 				required: true,
+				regex: /^[a-zA-Z0-9]*$/,
 				minlength: 6
 			},
 			confirm_password: {
@@ -25,19 +39,25 @@ $().ready(function() {
 			},
 		},
 		messages: {
-				firstname: "Please enter your firstname",
-				lastname: "Please enter your lastname",
+				firstname: {
+					required: "Please enter a firstname",
+                    regex: "Your firstname must contain only letters"
+				},
+				lastname:{
+					required: "Please enter a lastname",
+                    regex: "Your lastname must contain only letters"
+				},
 				username: {
 					required: "Please enter a username",
                     minlength: "Your username must consist of at least 2 characters"
 				},
 				password: {
 					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long"
+					minlength: "Your password must be at least 6 characters long"
 				},
 				confirm_password: {
 					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long",
+					minlength: "Your password must be at least 6 characters long",
 					equalTo: "Please enter the same password as above"
 				},
 				email: "Please enter a valid email address",
@@ -50,6 +70,9 @@ $().ready(function() {
                 saveDetails();
                 document.getElementById("signupForm").reset();
                 switchDivs('settings');
+			}
+			else{
+				document.getElementById("signupForm").reset();
 			}
 		}
 		

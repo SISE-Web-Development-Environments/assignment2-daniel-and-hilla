@@ -2,30 +2,32 @@
 $().ready(function() {
 
    
+   
 	//keys
 document.getElementById('keyboardsButtonRight').addEventListener('keydown', (event)=>{
     right = event.keyCode;
-    document.getElementById('keyboardsButtonRight').innerText = event.key;
+    document.getElementById('keyboardsButtonRight').value = event.key;
 });
 
 let txtL = document.getElementById('keyboardsButtonLeft');
 txtL.addEventListener('keydown', (event)=>{
     left = event.keyCode;
-    document.getElementById("keyboardsButtonLeft").innerText = event.key;
+    document.getElementById("keyboardsButtonLeft").value = event.key;
 });
 
 let txtD = document.getElementById('keyboardsButtonDown');
 txtD.addEventListener('keydown', (event)=>{
     down = event.keyCode;
-    document.getElementById("keyboardsButtonDown").innerText = event.key;
+    document.getElementById("keyboardsButtonDown").value = event.key;
 });
 
 let txtU = document.getElementById('keyboardsButtonUp');
 txtU.addEventListener('keydown', (event)=>{
     up = event.keyCode;
-    document.getElementById("keyboardsButtonUp").innerText = event.key;
+    document.getElementById("keyboardsButtonUp").value = event.key;
 });
  
+
 // validate signup form on keyup and submit
 	$("#settingsForm").validate({
 		rules: {
@@ -81,6 +83,13 @@ txtU.addEventListener('keydown', (event)=>{
 		
     });
  
+    
+
+    // document.getElementById('aboutDialog').addEventListener('click', (e)=>{   
+    //     	if (!(document.getElementById('aboutDialog').contains(e.target))){
+    //     		closeAboutDialog();
+    //     	} 
+    //     });
 
     });
     
@@ -174,9 +183,5 @@ function playOrStopMusic(){
     }
 }
 
-document.getElementById('aboutDialog').addEventListener('keydown', (event)=>{
-    if(event.keyCode == 27 && isOpenAboutdialog){
-        closeAboutDialog();
-    }
-});
+
 

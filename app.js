@@ -24,12 +24,13 @@ var left = 37;
 var lastMove;
 var isPlay=false;
 var music;
-var isOpenAboutdialog = false;
+
 
 $(document).ready(function() {
 		switchDivs('welcome')
 		context = canvas.getContext("2d");
 		music = document.getElementById('musicPac');
+		
 });
 
 function Start() {
@@ -169,16 +170,17 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
+	var monstersCount = 1;
 	for (var i = 0; i < 12; i++) {
 		for (var j = 0; j < 12; j++) {
 			var center = new Object();
 			center.x = i * 38 + 18;
 			center.y = j * 38 + 18;
 			if (board[i][j] == 3) { //monster
-				context.beginPath();
-				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
-				context.fillStyle = "pink";
-				context.fill();
+				var monster = new Image();
+				monster.src = "images/monster-"+ monstersCount + ".jpg";
+				context.drawImage(monster, center.x-15, center.y-15, 30, 30); 
+				monstersCount++; 
 			}
 			else if (board[i][j] == 2) { 
 				if (lastMove == 1){
@@ -225,55 +227,46 @@ function Draw() {
 					context.fillStyle = "black"; //color
 					context.fill();
 				}
-			} else if (board[i][j] == 5) { //food 5 points
+			} 
+			else if (board[i][j] == 5) { //food 5 points
 				context.beginPath();
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
 				context.fillStyle = color5p; //color
 				context.fill();
-			} else if (board[i][j] == 15) { //food 15 points
+			} 
+			else if (board[i][j] == 15) { //food 15 points
 				context.beginPath();
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
 				context.fillStyle = color15p; //color
 				context.fill();
-			} else if (board[i][j] == 25) { //food 25 points
+			} 
+			else if (board[i][j] == 25) { //food 25 points
 				context.beginPath();
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
 				context.fillStyle = color25p; //color
 				context.fill();
-			} else if (board[i][j] == 4) { //wall
+			} 
+			else if (board[i][j] == 4) { //wall
 				context.beginPath();
 				context.rect(center.x - 30, center.y - 30, 40, 40);
 				context.fillStyle = "grey"; //color
 				context.fill();
-			} else if (board[i][j] == 10) { //bonus
+			} 
+			else if (board[i][j] == 10) { //bonus
 				context.beginPath();
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
 				context.fillStyle = "brown"; //color
 				context.fill();
 			}	
 			else if (board[i][j] == 7) { //medicine
-				context.beginPath();
-				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
-				context.fillStyle = "grey"; //color
-				context.fill();
+				var heart = new Image();
+				heart.src = "images/heart1.jpg";
+				context.drawImage(heart, center.x-10, center.y-10, 20, 20); 
 			}	
 			else if (board[i][j] == 8) { //clock
-				context.beginPath();
-				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
-				context.fillStyle = "yellow"; //color
-				context.fill();
-				//context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
-				// var img = document.getElementById("imageHeart");
-				//context.drawImage(img, center.x, center.y, 1, 1);
-				// context.arc(center.x, center.y, 10, 0, 2 * Math.PI);
-				// context.clearArc(0, 0, c.width, c.height); 
-				//var img = document.getElementById("lamp")
-				// var pat = ctx.createPattern(img, 'no-repeat');
-				// context.arc(0, 0, 150, 100);
-				// ctx.fillStyle = pat;
-				// ctx.fill();
-				//context.fillStyle = "yellow"; //color
-				//context.fill();
+				var clock = new Image();
+				clock.src = "images/clock1.jpeg";
+				context.drawImage(clock, center.x-10, center.y-10, 20, 20); 
 			}	
 		}
 	}
@@ -426,6 +419,8 @@ function UpdateMonstersPosition() {
 				board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
 			}
 			monstersArray[i][0]++; 
+			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
+			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
 		else if (monstersArray[i][0] > shape.i && board[monstersArray[i][0]-1][monstersArray[i][1]]!=4 && board[monstersArray[i][0]-1][monstersArray[i][1]]!=10
 			&& board[monstersArray[i][0]-1][monstersArray[i][1]]!=3){
@@ -437,6 +432,8 @@ function UpdateMonstersPosition() {
 					board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
 				}
 			monstersArray[i][0]--; 
+			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
+			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
 		else if (monstersArray[i][1] < shape.j && board[monstersArray[i][0]][monstersArray[i][1]+1]!=4 && board[monstersArray[i][0]][monstersArray[i][1]+1]!=10
 			&& board[monstersArray[i][0]][monstersArray[i][1]+1]!=3){
@@ -447,6 +444,8 @@ function UpdateMonstersPosition() {
 					board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
 				}
 			monstersArray[i][1]++; 
+			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
+			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
 		else if (monstersArray[i][1] > shape.j && board[monstersArray[i][0]][monstersArray[i][1]-1]!=4 && board[monstersArray[i][0]][monstersArray[i][1]-1]!=10
 			&& board[monstersArray[i][0]][monstersArray[i][1]-1]!=3){
@@ -457,9 +456,10 @@ function UpdateMonstersPosition() {
 					board[monstersArray[i][0]][monstersArray[i][1]] = cellContant[i]; 
 				}
 			monstersArray[i][1]--; 
+			cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
+			board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
 		}
-		cellContant[i] = board[monstersArray[i][0]][monstersArray[i][1]];
-		board[monstersArray[i][0]][monstersArray[i][1]] = 3; 
+
 		if (didTheMonstersFoundMe()){
 			score -= 10;
 			lblScore.value = score;
@@ -574,14 +574,10 @@ function pickDate() {
     });
 }
 
-function showAboutDialog() { 
-	isOpenAboutdialog = true;
-	document.getElementById("aboutDialog").showModal(); 
-} 
 
-function closeAboutDialog() { 
-	document.getElementById("aboutDialog").close(); 
-	isOpenAboutdialog = false;
+
+function closeIncorrectDetailsDialog(){
+	document.getElementById("incorrectDetailsDialog").close(); 
 }
 
 function setSettings(){
@@ -604,14 +600,7 @@ function setSettings(){
 // 	} 
 // });
 
-// document.addEventListener("click", (evt) => {
-//     const aboutElement = document.getElementById("aboutDialog");
-//     let targetElement = evt.target; // clicked element
-    
-//         if (targetElement != aboutElement) {
-//             closeAboutDialog();
-//         }
-// });
+
 
 // $("aboutDialog").bind( "clickoutside", function(event){
 // 	closeAboutDialog();

@@ -5,14 +5,13 @@ $().ready(function() {
 	$("#logInForm").validate({
         
 		rules: {
-			firstname: "required",
-			lastname: "required",
 			username: {
 				required: true,
 				minlength: 2
 			},
 			password: {
 				required: true,
+				regex: /^[a-zA-Z0-9]*$/,
 				minlength: 6
 			},
 
@@ -28,7 +27,8 @@ $().ready(function() {
 				},
 				password: {
 					required: "Please provide a password",
-					minlength: "Your password must be at least 5 characters long"
+					minlength: "Your password must be at least 6 characters long",
+					regex: "Please insert a valid password"
 				},
 				email: "Please enter a valid email address",
 		},
@@ -38,7 +38,6 @@ $().ready(function() {
 			if(isValid){
                 //chack details - add function and move to game 
                 checkDetails();
-				
 			}
 		}
 		
@@ -52,13 +51,13 @@ $().ready(function() {
         var email = logInForm.emailLogIn.value;
         var value = localStorage.getItem(email);
         if(value == userName+password){
-            lblUserName.value = userName;
+            lblUserName.value = "Hello " + userName;
             document.getElementById("logInForm").reset();
             switchDivs('settings');
         }
         else{
             showIncorrectDetailsDialog();
-            switchDivs('welcome');
+            document.getElementById("logInForm").reset();
         }
        
     }

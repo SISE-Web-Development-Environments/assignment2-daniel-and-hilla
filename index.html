@@ -3,6 +3,7 @@
 	<head>
 
 		<link rel="stylesheet" type="text/css" href="style.css" />
+		<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -10,6 +11,8 @@
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./register.js"></script>
 		<script type="text/javascript" src="./logIn.js"></script>
+		<script type="text/javascript" src="./about.js"></script>
+
 		<title>Pacman</title>
 	
 	</head>
@@ -17,7 +20,7 @@
 	<body>
 
 		<header>
-			<p>Pacman</p>
+			<img id="logoImage" src="images/pacman.jpg"></button>
 			<input id="lblUserName" type="text" />
 			</br>
 		</header>
@@ -25,43 +28,47 @@
 		<nav>
 			<a class="menuButton" onclick="switchDivs('welcome')" href="#">Welcome</a>
 			</br>
+			</br>
 			<a class="menuButton" onclick="switchDivs('register')" href="#">Register</a>
+			</br>
 			</br>
 			<a class="menuButton" onclick="switchDivs('logIn')" href="#">Log In</a>
 			</br>
-			<a class="menuButton" onclick="showAboutDialog()" href="#">About</a>
+			</br>
+			<a id="modal-btn" onclick="showModal()" class="menuButton" href="#">About</a>
+			</br>	
 			</br>			
 			<a class="menuButton" onclick="switchDivs('settings')" href="#">Settings</a>
 		</nav>
 
 		<aside >
 			<div id = "gameSettings">
-			settings:
+			Game Settings:
 			</br>
 			keyboard buttons-
 			</br>
-			
 			5 points color:
 			</br>
-			<input id="lblcolor5p" type="text" />
+			<input class="settingsLable" id="lblcolor5p" type="text" />
 			</br>
 			15 points color:
-			<input id="lblcolor15p" type="text" />
+			<input class="settingsLable" id="lblcolor15p" type="text" />
 			</br>
 			25 points color:
-			<input id="lblcolor25p" type="text" />
+			<input class="settingsLable" id="lblcolor25p" type="text" />
 			</br>
 			number of balls:
-			<input id="lblNumOfBalls" type="text"/>
+			<input class="settingsLable" id="lblNumOfBalls" type="text"/>
 			</br>
 			number of monsters: 
-			<input id="lblNumOfMonsters" type="text"/>
+			<input class="settingsLable" id="lblNumOfMonsters" type="text"/>
 			</br>
 			life: 
-			<input id="lblLife" type="text"/>
+			</br>
+			<input class="settingsLable" id="lblLife" type="text"/>
 			</br>
 			Total game time: 
-			<input id="lblTotalGameTime" type="text"/>
+			<input class="settingsLable" id="lblTotalGameTime" type="text"/>
 		</div>
 		</aside>
 
@@ -101,7 +108,7 @@
 			</p>
 			<p>Date: <input type="text" onclick=pickDate() id="datepicker"></p>
 			<p>
-				<button class="submit" type="submit" value="Submit">Register</button>
+				<input class="submit" type="submit" value="Submit">
 			</p>
 		</fieldset>
 		</form>
@@ -206,7 +213,7 @@
 				<label for="numOfMonsters">number of monsters </label>
 				<input id="numOfMonsters" name="numOfMonsters" type="text" size="2" placeholder="1 to 4">
 				<p>
-				<button id="randomSettings" onclick="setRandomSettings()" >random Settings</button>
+				<button id="randomSettings"  onclick="setRandomSettings()" >random Settings</button>
 				<button class="submit" type="submit" value="Submit">Play!</button>
 				</p>
 			</form>
@@ -224,21 +231,31 @@
 			<div id="game">
 				<canvas id="canvas" height="450" width="470"></canvas>
 			</div>
-			<button id="musicBtn" class="musicButton" onclick="playOrStopMusic()" >music</button>
-			<audio id="musicPac" src="/music/pacmanSong.mp3"></audio>
+			<button id="musicBtn" class="musicButton" onclick="playOrStopMusic()" >
+				<img id="musicImage" src="images/music-icon1.jpg"></button>
+			<audio id="musicPac" src="music/pacmanSong.mp3"></audio>
 		</div>
 	</contet>
-
-	<dialog id="aboutDialog">
+<!-- 
+	<div id="aboutDialog">
 		<h3>This is a dialog window!</h3>
 		<br>
 		<button class="aboutClick" onclick="closeAboutDialog()">X</button>	
-	</dialog> 
-	<!-- <div id="aboutDialog" title="About"><p>This is a dialog window!</p>
-	</div> -->
+	</dialog>  -->
+	<div id="aboutModal" class="modal" display>
+		<div id="modal-content" class="modalContent">
+			<p>This is a dialog window!</p>
+			</br>
+			<span class= "close-btn">x</span>
+		 	<!-- <button class="aboutClick" onclick="closeAboutDialog()">X</button>	 -->
+		</div>
+	</div> 
+
+
 
 	<dialog id="incorrectDetailsDialog">
 		<h3>One or more of your details are wrong!</h3>
+		<button class="incorrectDetailsDialog" onclick="closeIncorrectDetailsDialog()">X</button>	
 	</dialog>
 	<footer>
 		<p>call me </p>
