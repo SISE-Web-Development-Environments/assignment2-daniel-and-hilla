@@ -24,10 +24,13 @@ var left = 37;
 var lastMove;
 var isPlay=false;
 var music;
-
+var wasEatTime = false;
+var wasEatLife = false;
+var wasEatBonus = false;
+var foodCounter = 0;
 
 $(document).ready(function() {
-		switchDivs('welcome')
+		switchDivs('welcome');
 		context = canvas.getContext("2d");
 		music = document.getElementById('musicPac');
 		init();
@@ -50,6 +53,7 @@ function Start() {
 	var food5p = food_remain*0.6;
 	var food15p = food_remain*0.3;
 	var food25p = food_remain*0.1;
+	foodCounter = food5p + food15p + food25p;
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -316,24 +320,30 @@ function UpdatePosition() {
 	}
 	if (board[shape.i][shape.j] == 5) {
 		score +=5;
+		foodCounter--;
 		lblScore.value = score;
 	}
 	else if(board[shape.i][shape.j] == 15){
 		score +=15;
+		foodCounter--;
 		lblScore.value = score;
 	}
 	else if(board[shape.i][shape.j] == 25){
 		score +=25;
+		foodCounter--;
 		lblScore.value = score;
 	}
 	else if(board[shape.i][shape.j] == 7){
+		wasEatLife = true;
 		lblLife.value++;
 	}
 	else if(board[shape.i][shape.j] == 8){
+		wasEatTime = true
 		totalTimeGame += 15; 
 		lblTotalGameTime.value = totalTimeGame; 
 	}
 	if (didThePacmanFoundTheBonus()){
+		wasEatBonus = true;
 		score+=50; 
 		lblScore.value = score;
 		bonusLocation = [-1,-1]; 
@@ -355,17 +365,20 @@ function UpdatePosition() {
 	if (score >= 80 && time_elapsed <= 10) {
 		pac_color = "green";
 	}
-	// if (score >= 100) {
-	// 	window.clearInterval(interval);
-	// 	window.clearInterval(monstersInterval); 
-	// 	window.alert("Winner!!!");
-	// 	switchDivs('welcome'); 
-	if(totalTimeGame < time_elapsed) {
+	if (( foodCounter == 0) && wasEatBonus && wasEatLife && wasEatTime) {
+		window.clearInterval(interval);
+		window.clearInterval(monstersInterval); 
+		isPlay = true;
+		playOrStopMusic();
+		window.alert("Winner!!!");
+		switchDivs('welcome'); 
+	}
+	else if(totalTimeGame < time_elapsed) {
 		window.clearInterval(interval);
 		window.clearInterval(monstersInterval); 
 		if (score >= 100) {
-			window.clearInterval(interval);
-			window.clearInterval(monstersInterval); 
+			// window.clearInterval(interval);
+			// window.clearInterval(monstersInterval); 
 			isPlay=true;
 		    playOrStopMusic();
 			window.alert("Winner!!!");
@@ -623,4 +636,3 @@ function setSettings(){
         
 // function showAboutDialog2(){
 //     $("#aboutDialog").dialog();
-//   } 

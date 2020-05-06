@@ -162,7 +162,7 @@ footer
 	display: none;
 	position: fixed; 
 	padding-top: 50px;
-	left: 500px; 
+	left: 50px; 
 	top: 200px;
 	width: 400px;
 	height: 200px; 
@@ -175,10 +175,12 @@ footer
   }
    
   .modal-content {
-	position: relative; 
+	position: center; 
 	background-color:#FFA07A(0,0,0, 1);
 	padding: 20px; 
 	margin: auto; 
+	top: 20px;
+	height: 100px;
 	width: 75%;  
 	-webkit-animation-name: animatetop;
 	-webkit-animation-duration: 0.4s;

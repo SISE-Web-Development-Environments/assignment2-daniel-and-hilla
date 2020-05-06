@@ -68,7 +68,7 @@ $().ready(function() {
 			if(isValid){
                 //save details - add function and move to game 
                 saveDetails();
-                document.getElementById("signupForm").reset();
+				document.getElementById("signupForm").reset();
                 switchDivs('settings');
 			}
 			else{
@@ -83,5 +83,10 @@ $().ready(function() {
         var userName = signupForm.username.value;
         var password = signupForm.password.value;
         //var email = signupForm.email.value;
-        sessionStorage.setItem(userName, password);
-    } 
+		sessionStorage.setItem(userName, password);
+		automaticLogIn(userName);
+	} 
+	
+	function automaticLogIn(userName){
+		lblUserName.value = "Hello " + userName;
+	}

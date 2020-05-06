@@ -119,14 +119,17 @@ function setRandomSettings(){
     lblNumOfBalls.value = food_remain;
     lblcolor5p.value = color5p; 
 	lblcolor15p.value = color15p; 
-	lblcolor25p.value = color25p;
+    lblcolor25p.value = color25p;
+    counter5p = color5p;
+    counter15p = color15p;
+    counter25p = color25p;
     lblNumOfMonsters.value = numberOfMonsters;  
     document.getElementById("settingsForm").reset();
     switchDivs('gameBoard');
 }
 
 function checkBoxColors5(id) {
-	color5p = document.getElementById(id).value;
+    color5p = document.getElementById(id).value;
 }
 
 function checkBoxColors15(id) {
