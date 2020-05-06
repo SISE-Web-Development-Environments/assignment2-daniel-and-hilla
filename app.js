@@ -37,8 +37,7 @@ $(document).ready(function() {
 function init(){
 	var userName = "p";
 	var password = "p";
-	var email = 
-	sessionStorage.setItem(email, userName+password);
+	sessionStorage.setItem(userName, password);
 }
 
 
@@ -80,12 +79,19 @@ function Start() {
 				monstersLeft--; 
 			}
 			if (
-				(i == 3 && j == 3) || (i == 8 && j == 6) ||
-				(i == 3 && j == 4) || (i == 7 && j == 8) ||
-				(i == 3 && j == 5) || (i == 1 && j == 6) ||
-				(i == 6 && j == 1) || (i == 0 && j == 3) ||
-				(i == 6 && j == 2) || (i == 4 && j == 0) ||
-				(i == 1 && j == 0) || (i == 4 && j == 0)
+				(i == 1 && j == 2) || (i == 2 && j == 2) ||
+				(i == 3 && j == 2) || (i == 10 && j == 2) ||
+				(i == 9 && j == 2) || (i == 8 && j == 2) ||
+				(i == 1 && j == 3) || (i == 10 && j == 3) ||
+				(i == 1 && j == 3) || (i == 10 && j == 3) ||
+				(i == 1 && j == 3) || (i == 10 && j == 3) ||
+				(i == 1 && j == 9) || (i == 2 && j == 9) ||
+				(i == 3 && j == 9) || (i == 10 && j == 9) ||
+				(i == 9 && j == 9) || (i == 8 && j == 9) ||
+				(i == 10 && j == 8) || (i == 1 && j == 8) ||
+				(i == 3 && j == 5) || (i == 3 && j == 6) ||
+				(i == 8 && j == 5) || (i == 8 && j == 6) 
+
 			) {
 				board[i][j] = 4;
 			}
@@ -239,25 +245,25 @@ function Draw() {
 			} 
 			else if (board[i][j] == 5) { //food 5 points
 				context.beginPath();
-				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
+				context.arc(center.x, center.y, 7, 0, 2 * Math.PI); // circle
 				context.fillStyle = color5p; //color
 				context.fill();
 			} 
 			else if (board[i][j] == 15) { //food 15 points
 				context.beginPath();
-				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
+				context.arc(center.x, center.y, 9, 0, 2 * Math.PI); // circle
 				context.fillStyle = color15p; //color
 				context.fill();
 			} 
 			else if (board[i][j] == 25) { //food 25 points
 				context.beginPath();
-				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
+				context.arc(center.x, center.y, 12, 0, 2 * Math.PI); // circle
 				context.fillStyle = color25p; //color
 				context.fill();
 			} 
 			else if (board[i][j] == 4) { //wall
 				context.beginPath();
-				context.rect(center.x - 30, center.y - 30, 40, 40);
+				context.rect(center.x - 17, center.y - 17, 34, 34);
 				context.fillStyle = "grey"; //color
 				context.fill();
 			} 

@@ -4,41 +4,37 @@ $().ready(function() {
 	// validate signup form on keyup and submit
 	$("#logInForm").validate({
         
-		rules: {
-			username: {
-				required: true,
-				minlength: 2
-			},
-			password: {
-				required: true,
-				regex: /^[a-zA-Z0-9]*$/,
-				minlength: 6
-			},
+		// rules: {
+		// 	username: {
+		// 		required: true,
+		// 		minlength: 2
+		// 	},
+		// 	password: {
+		// 		required: true,
+		// 		regex: /^[a-zA-Z0-9]*$/,
+		// 		minlength: 6
+		// 	},
 
-			// email: {
-			// 	required: true,
-			// 	email: true
-			// },
-		},
-		messages: {
-				username: {
-					required: "Please enter a username",
-                    minlength: "Your username must consist of at least 2 characters"
-				},
-				password: {
-					required: "Please provide a password",
-					minlength: "Your password must be at least 6 characters long",
-					regex: "Please insert a valid password"
-				},
-				// email: "Please enter a valid email address",
-		},
+		// 	// email: {
+		// 	// 	required: true,
+		// 	// 	email: true
+		// 	// },
+		// },
+		// messages: {
+		// 		username: {
+		// 			required: "Please enter a username",
+        //             minlength: "Your username must consist of at least 2 characters"
+		// 		},
+		// 		password: {
+		// 			required: "Please provide a password",
+		// 			minlength: "Your password must be at least 6 characters long",
+		// 			regex: "Please insert a valid password"
+		// 		},
+		// 		// email: "Please enter a valid email address",
+		// },
 		
 		submitHandler: function(){
-			var isValid = $("#logInForm").valid();
-			if(isValid){
-                //chack details - add function and move to game 
-                checkDetails();
-			}
+                checkDetails();	
 		}
 		
 	});

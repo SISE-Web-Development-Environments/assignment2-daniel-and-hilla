@@ -14,74 +14,87 @@
 		<script type="text/javascript" src="./about.js"></script>
 
 		<title>Pacman</title>
-	
 	</head>
 
 	<body>
-
 		<header>
-			<img id="logoImage" src="images/pacman.jpg"></button>
+			<img id="logoImage" src="images/pacman.jpg">
+		</br>
 			<input id="lblUserName" type="text" />
-			</br>
+			
 		</header>
 
 		<nav>
-			<a class="menuButton" onclick="switchDivs('welcome')" href="#">Welcome</a>
 			</br>
 			</br>
-			<a class="menuButton" onclick="switchDivs('register')" href="#">Register</a>
 			</br>
 			</br>
-			<a class="menuButton" onclick="switchDivs('logIn')" href="#">Log In</a>
+			<button class="menuButton" onclick="switchDivs('welcome')" >Welcome</button>
 			</br>
 			</br>
-			<a id="modal-btn" onclick="showModal()" class="menuButton" href="#">About</a>
+			<button class="menuButton" onclick="switchDivs('register')" >Register</button>
+			</br>
+			</br>
+			<button class="menuButton" onclick="switchDivs('logIn')" >Log In</button>
+			</br>	
+			</br>
+			<button id="modal-btn" onclick="showModal()" class="menuButton">About</button>
 			</br>	
 			</br>			
-			<a class="menuButton" onclick="switchDivs('settings')" href="#">Settings</a>
+			<button class="menuButton" onclick="switchDivs('settings')" >Settings</button>
 		</nav>
 
 		<aside >
 			<div id = "gameSettings">
-			Game Settings:
 			</br>
-			keyboard buttons-
+			<h3>Game Settings:</h3>
+			Total time: 
+			<input class="settingsLable" id="lblTotalGameTime" type="text"/>
+			Keyboard buttons-
 			</br>
-			5 points color:
+			left-
+			<input class="settingsLable" id="leftKeylbl" type="text" />
+			right-
+			<input class="settingsLable" id="rightKeylbl" type="text" />
+			up-
+			<input class="settingsLable" id="upKeylbl" type="text" />
+			down-
+			<input class="settingsLable" id="downKeylbl" type="text" />
 			</br>
+			5 points:
 			<input class="settingsLable" id="lblcolor5p" type="text" />
 			</br>
-			15 points color:
+			15 points:
 			<input class="settingsLable" id="lblcolor15p" type="text" />
 			</br>
-			25 points color:
+			25 points:
 			<input class="settingsLable" id="lblcolor25p" type="text" />
 			</br>
-			number of balls:
+			Number of balls:
 			<input class="settingsLable" id="lblNumOfBalls" type="text"/>
 			</br>
-			number of monsters: 
+			Number of monsters: 
 			<input class="settingsLable" id="lblNumOfMonsters" type="text"/>
 			</br>
-			life: 
+			Lives: 
 			</br>
 			<input class="settingsLable" id="lblLife" type="text"/>
 			</br>
-			Total game time: 
-			<input class="settingsLable" id="lblTotalGameTime" type="text"/>
+			</br>
+
 		</div>
 		</aside>
 
 		<contet>
 		<div class='display' id = 'welcome' >
-				<p> Welcome!</p>
-				<button onclick="switchDivs('register')">Register</button>
-				<button onclick="switchDivs('logIn')">Log In</button>
+				<p id="welcome">Welcome to our game!</p>
+				<button class="welcomeButton" onclick="switchDivs('register')">Register</button>
+				<button class="welcomeButton" onclick="switchDivs('logIn')">Log In</button>
 		</div>
 		<div class='display' id = 'register'>
 			<form class="cmxform" id="signupForm"> 
 			<fieldset>
-			<legend>Please fill your details in the form below:</legend>
+			<legend>Please fill your details in the following form:</legend>
 			<p>
 			<label for="firstname">Firstname</label>
 			<input id="firstname" name="firstname" type="text" >
@@ -116,7 +129,7 @@
 		<div class='display' id = 'logIn' >
 			<form class="cmxform" id="logInForm"> 
 				<fieldset>
-				<legend>Log in form</legend>
+				<legend>Log in:</legend>
 				<p>
 				<label for="username">Username</label>
 				<input id="usernameLogIn" name="username" type="text">
@@ -125,10 +138,6 @@
 				<label for="password">Password</label>
 				<input id="passwordLogIn" name="password" type="password">
 				</p>
-				<!-- <p>
-				<label for="email">Email</label>
-				<input id="emailLogIn" name="email" type="email">
-				</p> -->
 				<p>
 					<input class="submit" type="submit" value="Submit">
 				</p>
@@ -137,7 +146,7 @@
 		</div>
 		<div class='display' id="settings" >
 			<script type="text/javascript" src="./settings.js"></script>
-			<strong>Settings:</strong>
+			<strong>Please fill your preferred settings for the game:</strong>
 			<form id="settingsForm">
 				<p id="keyboardsButtons">keyboards buttons</p>
 				<label for="keyboardsButtonRight">Right:</label>
@@ -148,6 +157,7 @@
 				<input id="keyboardsButtonUp" name="keyboardsButtonUp" type="text" size="2" >
 				<label for="keyboardsButtonDown">Down:</label>
 				<input id="keyboardsButtonDown" name="keyboardsButtonDown" type="text" size="2" >
+				</br>
 				</br>	
 				<label for="numberOfBalls">number of balls (between 50 to 90)</label>
 				<input id="numberOfBalls" name="numberOfBalls" type="text" size="2" >	
@@ -156,64 +166,82 @@
 				<fieldset id="colorsBalls1">
 					<legend>First color - 5 points:</legend>
 					<label for="red">
-					    <input type="radio" id="color11" value="red" name="color1" onclick="checkBoxColors5(this.id)" >Red
+						<input type="radio" id="color11" value="red" name="color1" onclick="checkBoxColors5(this.id)" >
+						<img class ="ball" src="images/red-ball.jpg">
 					 </label> 
 					<label for="yellow">
-						<input type="radio" id="color12" value="orange" name="color1" onclick="checkBoxColors5(this.id)" >Orange
+						<input type="radio" id="color12" value="orange" name="color1" onclick="checkBoxColors5(this.id)">
+						<img class= "ball" src="images/orange-ball.jpg">
 					</label>
 					<label for="green">
-						<input type="radio" id="color13" value="green" name="color1" onclick="checkBoxColors5(this.id)" >Green
+						<input type="radio" id="color13" value="green" name="color1" onclick="checkBoxColors5(this.id)" >
+						<img class= "ball" src="images/green-ball.jpg">
 					</label>
 					<label for="blue">
-						<input type="radio" id="color14" value="blue" name="color1" onclick="checkBoxColors5(this.id)">Blue
+						<input type="radio" id="color14" value="blue" name="color1" onclick="checkBoxColors5(this.id)">
+						<img class= "ball" src="images/blue-ball.jpg">
 					</label>
 					<label for="purple">
-						<input type="radio" id="color15" value="purple" name="color1" onclick="checkBoxColors5(this.id)" >Purple
+						<input type="radio" id="color15" value="purple" name="color1" onclick="checkBoxColors5(this.id)" >
+						<img class= "ball" src="images/purple-ball.jpg">
 					</label>
 				</fieldset>
 				<fieldset id="colorsBalls2">
 					<legend>Second color - 15 points:</legend>
 					<label for="red">
-					    <input type="radio" id="color21" value="red" name="color2" onclick="checkBoxColors15(this.id)">Red
+						<input type="radio" id="color21" value="red" name="color2" onclick="checkBoxColors15(this.id)">
+						<img class= "ball" src="images/red-ball.jpg">
 					</label>
 					<label for="yellow">
-						<input type="radio" id="color22" value="orange" name="color2" onclick="checkBoxColors15(this.id)" >Orange
+						<input type="radio" id="color22" value="orange" name="color2" onclick="checkBoxColors15(this.id)">
+						<img class= "ball" src="images/orange-ball.jpg">
 					</label>
 					<label for="green">
-						<input type="radio" id="color23" value="green" name="color2" onclick="checkBoxColors15(this.id)">Green
+						<input type="radio" id="color23" value="green" name="color2" onclick="checkBoxColors15(this.id)">
+						<img class= "ball" src="images/green-ball.jpg">
 					</label>
 					<label for="blue">
-						<input type="radio" id="color24" value="blue" name="color2" onclick="checkBoxColors15(this.id)" >Blue
+						<input type="radio" id="color24" value="blue" name="color2" onclick="checkBoxColors15(this.id)" >
+						<img class= "ball" src="images/blue-ball.jpg">
 					</label>
 					<label for="purple">
-						<input type="radio" id="color25" value="purple" name="color2" onclick="checkBoxColors15(this.id)">Purple
+						<input type="radio" id="color25" value="purple" name="color2" onclick="checkBoxColors15(this.id)">
+						<img class= "ball" src="images/purple-ball.jpg">
 					</label>
 				</fieldset>
 				<fieldset id="colorsBalls3">
 					<legend>Third color - 25 points:</legend>
 					<label for="red">
-					    <input type="radio" id="color31" value="red" name="color3" onclick="checkBoxColors25(this.id)" >Red
+						<input type="radio" id="color31" value="red" name="color3" onclick="checkBoxColors25(this.id)">
+						<img class= "ball" src="images/red-ball.jpg">
 					</label>
 					<label for="yellow">
-						<input type="radio" id="color32" value="orange" name="color3" onclick="checkBoxColors25(this.id)">Orange
+						<input type="radio" id="color32" value="orange" name="color3" onclick="checkBoxColors25(this.id)">
+						<img class= "ball" src="images/orange-ball.jpg">
 					</label>
 					<label for="green">
-						<input type="radio" id="color33" value="green" name="color3" onclick="checkBoxColors25(this.id)" >Green
+						<input type="radio" id="color33" value="green" name="color3" onclick="checkBoxColors25(this.id)">
+						<img class= "ball" src="images/green-ball.jpg">
 					</label>
 					<label for="blue">
-						<input type="radio" id="color34" value="blue" name="color3" onclick="checkBoxColors25(this.id)">Blue
+						<input type="radio" id="color34" value="blue" name="color3" onclick="checkBoxColors25(this.id)">
+						<img class= "ball" src="images/blue-ball.jpg">
 					</label>
 					<label for="purple">
-						<input type="radio" id="color35" value="purple" name="color3" onclick="checkBoxColors25(this.id)">Purple
+						<input type="radio" id="color35" value="purple" name="color3" onclick="checkBoxColors25(this.id)">
+						<img class= "ball" src="images/purple-ball.jpg">
 					</label>
 				</fieldset>
 				</br>
 				<label for="timeForAGame">Time for a game (sec)</label>
 				<input id="timeForAGame" name="timeForAGame" type="text" size="2" placeholder="min 60" >	
+				</br>
+				</br>
 				<label for="numOfMonsters">number of monsters </label>
 				<input id="numOfMonsters" name="numOfMonsters" type="text" size="2" placeholder="1 to 4">
+			</br>
 				<p>
-				<button id="randomSettings"  onclick="setRandomSettings()" >random Settings</button>
+				<button id="randomSettings"  onclick="setRandomSettings()" >Random Settings</button>
 				<button class="submit" type="submit" value="Submit">Play!</button>
 				</p>
 			</form>
@@ -228,6 +256,7 @@
 				<label for="lblTime">TIME:</label>
 				<input id="lblTime" type="text" />
 			</div>
+		</br>
 			<div id="game">
 				<canvas id="canvas" height="450" width="470"></canvas>
 			</div>
@@ -258,7 +287,8 @@
 		<button class="incorrectDetailsDialog" onclick="closeIncorrectDetailsDialog()">X</button>	
 	</dialog>
 	<footer>
-		<p>call me </p>
+		<p>For any questions or problems please contact us by e-mail: </p>
+		<p>gorsia@post.bgu.ac.il / hillabe@post.bgu.ac.il</p>
 	</footer>
 
 	
