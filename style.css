@@ -171,7 +171,7 @@ footer
 	justify-content: center;
 	align-items: center;
 	border-width: 4px;
-	
+	border-color: black;
   }
    
   .modal-content {
