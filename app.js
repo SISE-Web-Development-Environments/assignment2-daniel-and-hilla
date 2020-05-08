@@ -272,10 +272,9 @@ function Draw() {
 				context.fill();
 			} 
 			else if (board[i][j] == 10) { //bonus
-				context.beginPath();
-				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle
-				context.fillStyle = "brown"; //color
-				context.fill();
+				var bonus = new Image();
+				bonus.src = "images/gift.jpg";
+				context.drawImage(bonus, center.x-10, center.y-10, 20, 20); 
 			}	
 			else if (board[i][j] == 7) { //medicine
 				var heart = new Image();
