@@ -378,18 +378,16 @@ function UpdatePosition() {
 		window.clearInterval(interval);
 		window.clearInterval(monstersInterval); 
 		if (score >= 100) {
-			// window.clearInterval(interval);
-			// window.clearInterval(monstersInterval); 
 			isPlay=true;
 		    playOrStopMusic();
 			window.alert("Winner!!!");
-			switchDivs('welcome'); 
+			switchDivs('settings'); 
 		}
 		else{
 			isPlay=true;
 	    	playOrStopMusic();
 			window.alert("You are better then " + score + " points!");
-			switchDivs('welcome'); 
+			switchDivs('settings'); 
 		}
 		
 	} else if(lblLife.value == 0) {
@@ -398,7 +396,7 @@ function UpdatePosition() {
 		isPlay=true;
 		playOrStopMusic();
 		window.alert("Loser!");
-		switchDivs('welcome'); 
+		switchDivs('settings'); 
 		
 	} 
 	else {
