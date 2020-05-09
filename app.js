@@ -196,7 +196,7 @@ function Draw() {
 			var center = new Object();
 			center.x = i * 38 + 18;
 			center.y = j * 38 + 18;
-			if (board[i][j] == 3) { //monster
+			if (board[i][j] == 3 && monstersCount<=4) { //monster
 				var monster = new Image();
 				monster.src = "images/monster-"+ monstersCount + ".jpg";
 				context.drawImage(monster, center.x-15, center.y-15, 30, 30); 
