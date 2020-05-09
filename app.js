@@ -372,7 +372,7 @@ function UpdatePosition() {
 		isPlay = true;
 		playOrStopMusic();
 		window.alert("Winner!!!");
-		switchDivs('welcome'); 
+		switchDivs('settings'); 
 	}
 	else if(totalTimeGame < time_elapsed) {
 		window.clearInterval(interval);
@@ -588,8 +588,7 @@ function switchDivs(id){
 	if(id == 'gameBoard'){
 		gameSettings.style.visibility="visible";
 		playOrStopMusic();
-		Start(); 
-		
+		Start(); 	
 	}
 
 }
