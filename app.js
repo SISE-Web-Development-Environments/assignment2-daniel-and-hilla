@@ -27,7 +27,7 @@ var music;
 var wasEatTime = false;
 var wasEatLife = false;
 var wasEatBonus = false;
-var foodCounter = 0;
+var foodCounter;
 
 $(document).ready(function() {
 		switchDivs('welcome');
@@ -53,7 +53,6 @@ function Start() {
 	var food5p = food_remain*0.6;
 	var food15p = food_remain*0.3;
 	var food25p = food_remain*0.1;
-	foodCounter = food5p + food15p + food25p;
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -580,14 +579,14 @@ function switchDivs(id){
 	gameBoard.style.visibility="hidden";
 	var gameSettings = document.getElementById('gameSettings');
 	gameSettings.style.visibility="hidden";
-
+	
 	//show only one section	    	
 	var selected = document.getElementById(id);			
 	selected .style.visibility="visible";			
-
+	
 	if(id == 'gameBoard'){
 		gameSettings.style.visibility="visible";
-		playOrStopMusic();
+		playMusic();
 		Start(); 	
 	}
 
@@ -608,6 +607,7 @@ function closeIncorrectDetailsDialog(){
 function setSettings(){
 	food_remain = settingsForm.numberOfBalls.value;
 	lblNumOfBalls.value = food_remain;
+	foodCounter = food_remain;
 	lblcolor5p.value = color5p; 
 	lblcolor15p.value = color15p; 
 	lblcolor25p.value = color25p;
@@ -615,4 +615,9 @@ function setSettings(){
 	lblNumOfMonsters.value = numberOfMonsters;  
 	totalTimeGame = settingsForm.timeForAGame.value;
 	lblTotalGameTime.value = totalTimeGame; 
+}
+
+function switchDivAfterOneGame(id){
+	stopMusic();
+	switchDivs(id);
 }

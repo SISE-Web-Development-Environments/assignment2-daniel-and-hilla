@@ -5,28 +5,28 @@ $().ready(function() {
 document.getElementById('keyboardsButtonRight').addEventListener('keydown', (event)=>{
     right = event.keyCode;
     document.getElementById('keyboardsButtonRight').value = event.key;
-    rightKeylbl.value = right;
+    rightKeylbl.value = event.key;
 });
 
 let txtL = document.getElementById('keyboardsButtonLeft');
 txtL.addEventListener('keydown', (event)=>{
     left = event.keyCode;
     document.getElementById("keyboardsButtonLeft").value = event.key;
-    leftKeylbl.value = left;
+    leftKeylbl.value = event.key;;
 });
 
 let txtD = document.getElementById('keyboardsButtonDown');
 txtD.addEventListener('keydown', (event)=>{
     down = event.keyCode;
     document.getElementById("keyboardsButtonDown").value = event.key;
-    downKeylbl.value = down;
+    downKeylbl.value = event.key;;
 });
 
 let txtU = document.getElementById('keyboardsButtonUp');
 txtU.addEventListener('keydown', (event)=>{
     up = event.keyCode;
     document.getElementById("keyboardsButtonUp").value = event.key;
-    upKeylbl.value = up;
+    upKeylbl.value = event.key;;
 });
  
 
@@ -129,18 +129,19 @@ function checkBoxColors25(id) {
 
 function  setDefaultKeyBoards(){
     up = 38;
-    upKeylbl.value = up;
+    upKeylbl.value = 'ArrowUP';
     down = 40;
-    downKeylbl.value = down;
+    downKeylbl.value = 'ArrowDown';
     right = 39;
-    rightKeylbl.value = right;
+    rightKeylbl.value = 'ArrowRight';
     left = 37;
-    leftKeylbl.value = left;
+    leftKeylbl.value = 'ArrowLeft';
 }
 
 function setRandomNumberOfBalls(){
     var random1 =  Math.floor(Math.random() * 40) + 50;
     food_remain = random1;
+    foodCounter = food_remain;
 }
 
 function setRandomTimeOfGame(){
@@ -180,6 +181,16 @@ function playOrStopMusic(){
         isPlay=true;
     }
 }
+function stopMusic(){
+    music.pause();
+    isPlay=false;
+}
+
+function playMusic(){
+    music.play();
+    isPlay=true;
+}
+
 
 
 
