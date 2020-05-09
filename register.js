@@ -14,11 +14,11 @@ $().ready(function() {
 		rules: {
 			firstname: {
 				required: true,
-				regex: /^([^0-9]*)$/
+				regex: /^([^0-9]!@#$%^&(){}|\])$/
 			},
 			lastname: {
 				required: true,
-				regex: /^([^0-9]*)$/
+				regex: /^([^0-9]!@#$%^&(){}|\])$/
 			},
 			username: {
 				required: true,

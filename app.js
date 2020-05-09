@@ -526,7 +526,7 @@ function updateBonusPosition(){
 			}
 		}
 		if (move == 3) { //left
-			if (bonusLocation[0] > 0 && board[bonusLocation[0] - 1][bonusLocation[1]] != 4 && board[bonusLocation[0] + 1][bonusLocation[1]] != 3) {
+			if (bonusLocation[0] > 0 && board[bonusLocation[0] - 1][bonusLocation[1]] != 4 && board[bonusLocation[0] - 1][bonusLocation[1]] != 3) {
 				board[bonusLocation[0]][bonusLocation[1]] = bonusCellContant; 
 				bonusLocation[0]--;
 				bonusCellContant = board[bonusLocation[0]][bonusLocation[1]]; 
@@ -616,20 +616,3 @@ function setSettings(){
 	totalTimeGame = settingsForm.timeForAGame.value;
 	lblTotalGameTime.value = totalTimeGame; 
 }
-
-
-
-// document.getElementById('aboutDialog').addEventListener('click', function(e){   
-// 	if (!(document.getElementById('aboutDialog').contains(e.target))){
-// 		closeAboutDialog();
-// 	} 
-// });
-
-
-
-// $("aboutDialog").bind( "clickoutside", function(event){
-// 	closeAboutDialog();
-//   });
-        
-// function showAboutDialog2(){
-//     $("#aboutDialog").dialog();
