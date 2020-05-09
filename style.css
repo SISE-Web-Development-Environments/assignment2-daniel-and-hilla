@@ -161,43 +161,30 @@ footer
 	position: fixed; 
 	padding-top: 50px;
 	left: 50px; 
-	top: 200px;
+	top: 150px;
 	width: 400px;
-	height: 200px; 
+	height: 300px; 
 	background-color: black(0,0,0, 1);
-	color: black;
+	color: rgb(255, 103, 103);
 	justify-content: center;
 	align-items: center;
-	border-width: 4px;
-	border-color: black;
+	border-width: 3px;
+	border-color: rgb(255, 48, 48);
+	box-shadow: 0 0px 3px 1px #b4b5b6;
+	border-radius: 3px;
   }
    
-  .modal-content {
-	position: center; 
-	background-color:#FFA07A(0,0,0, 1);
-	padding: 20px; 
-	margin: auto; 
-	top: 20px;
-	height: 100px;
-	width: 75%;  
-	-webkit-animation-name: animatetop;
-	-webkit-animation-duration: 0.4s;
-	animation-name: animatetop;
-	animation-duration: 0.4s;
-	border-radius: 4px;
-	text-align: center;
-	align-items: center;
-  }
   .close-btn {
 	float: right; 
 	color: lightgray; 
 	font-size: 24px;  
 	font-weight: bold;
 	top: 3px;
-	right: 10px;
+	left: 405px;
 	height: 5px;
 	width: 10px;
 	position: absolute;
+	cursor: pointer;
   }
   .close-btn:hover {
 	color: darkgray;
@@ -275,3 +262,47 @@ footer
 	  color:  rgb(247, 186, 136);
 	  font-size: 30px;
   }
+
+  #musicImage{
+	  width: 25px;
+	  height: 25px; 
+	  position: absolute; 
+	  left: 0px; 
+	  top: 0px;
+  }
+
+  #musicBtn{
+	width: 25px;
+	height: 25px; 
+	position: absolute; 
+	left: 0px; 
+	top: 0px;
+  }
+
+#aboutText{
+	position: absolute; 
+	top: 40px;
+	left: 10px;
+	right: 10px;
+}
+
+#aboutTitle{
+	position: absolute; 
+	top: 7px;
+	left: 10px;
+	right: 10px;
+}
+
+#scoreAndTime{
+	position: absolute; 
+	left: 150px;
+	top: 10px; 
+}
+
+#lblScore{
+	width: 50px; 
+}
+
+#lblTime{
+	width: 50px; 
+}

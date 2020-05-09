@@ -35,7 +35,7 @@ txtU.addEventListener('keydown', (event)=>{
 		rules: {
 			numberOfBalls: {
 				required: true,
-                //regex: /^[0-9]*$/,
+                regex: /^[0-9]*$/,
                 range: [50, 90]
 			},
 			timeForAGame: {
@@ -85,14 +85,6 @@ txtU.addEventListener('keydown', (event)=>{
 		
     });
  
-    
-
-    // document.getElementById('aboutDialog').addEventListener('click', (e)=>{   
-    //     	if (!(document.getElementById('aboutDialog').contains(e.target))){
-    //     		closeAboutDialog();
-    //     	} 
-    //     });
-
     });
     
     function isDifferentColors(){
@@ -187,7 +179,6 @@ function playOrStopMusic(){
         music.play();
         isPlay=true;
     }
-    // document.getElementById("musicBtn").style.background="url('images/music-icon1.jpg')"; 
 }
 
 

@@ -34,7 +34,7 @@ $(document).ready(function() {
 		context = canvas.getContext("2d");
 		music = document.getElementById('musicPac');
 		init();
-		
+		document.getElementById("settingsButton").style.display = "none";
 });
 
 function init(){
@@ -63,9 +63,9 @@ function Start() {
 	var monstersLeft=numberOfMonsters;
 	for (var i = 0; i < 12; i++) {
 		board[i] = new Array();
-		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
+		
 		for (var j = 0; j < 12; j++) {
-			
+			//put the monsters in the corners
 			if (monstersLeft > 0 && (i == 0 && j == 0) ){
 				board[i][j] = 3; 
 				monstersLeft--; 
@@ -82,6 +82,7 @@ function Start() {
 				board[i][j] = 3; 
 				monstersLeft--; 
 			}
+			//init the walls
 			if (
 				(i == 1 && j == 2) || (i == 2 && j == 2) ||
 				(i == 3 && j == 2) || (i == 10 && j == 2) ||
@@ -351,6 +352,7 @@ function UpdatePosition() {
 	if (didTheMonstersFoundMe()){
 		score -= 10;
 		lblScore.value = score;
+		board[shape.i][shape.j] = 0;
 		var emptyCell = findRandomEmptyCell(board);
 		shape.i = emptyCell[0];
 		shape.j = emptyCell[1]; 
@@ -600,7 +602,6 @@ function pickDate() {
       changeYear: true
     });
 }
-
 
 
 function closeIncorrectDetailsDialog(){

@@ -49,7 +49,8 @@ $().ready(function() {
         if(value == password){
             lblUserName.value = "Hello " + userName;
             document.getElementById("logInForm").reset();
-            switchDivs('settings');
+			switchDivs('settings');
+			document.getElementById("settingsButton").style.display = "block";
         }
         else{
             showIncorrectDetailsDialog();

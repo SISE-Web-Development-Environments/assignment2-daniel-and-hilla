@@ -9,6 +9,7 @@ $.validator.addMethod("regex",
 
 $().ready(function() {
 	// validate signup form on keyup and submit
+	
 	$("#signupForm").validate({
 		rules: {
 			firstname: {
@@ -69,20 +70,20 @@ $().ready(function() {
                 //save details - add function and move to game 
                 saveDetails();
 				document.getElementById("signupForm").reset();
-                switchDivs('settings');
+				switchDivs('settings');
+				document.getElementById("settingsButton").style.display = "block";
 			}
 			else{
 				document.getElementById("signupForm").reset();
 			}
 		}
-		
 	});
+
     });
     
     function saveDetails(){
         var userName = signupForm.username.value;
         var password = signupForm.password.value;
-        //var email = signupForm.email.value;
 		sessionStorage.setItem(userName, password);
 		automaticLogIn(userName);
 	} 
@@ -90,3 +91,4 @@ $().ready(function() {
 	function automaticLogIn(userName){
 		lblUserName.value = "Hello " + userName;
 	}
+

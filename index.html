@@ -3,9 +3,10 @@
 	<head>
 
 		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" href="jquery-ui.css"/>
 		<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="./jqueryvalidation.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
@@ -41,7 +42,7 @@
 			<button id="modal-btn" onclick="showModal()" class="menuButton">About</button>
 			</br>	
 			</br>			
-			<button class="menuButton" onclick="switchDivs('settings')" >Settings</button>
+			<button id="settingsButton" class="menuButton" onclick="switchDivs('settings')">New Game</button>
 		</nav>
 
 		<aside >
@@ -119,7 +120,17 @@
 			<label for="email">Email</label>
 			<input id="email" name="email" type="email">
 			</p>
-			<p>Date: <input type="text" onclick=pickDate() id="datepicker"></p>
+			<label for="date">Birth Date:</label>
+			<input type="text" id="datepicker" autocomplete="off">
+			<script>
+				$( function() {
+				  $( "#datepicker" ).datepicker({
+					changeMonth: true,
+					  changeYear: true,
+					  maxDate: +0
+				  });
+				} );
+				</script>
 			<p>
 				<input class="submit" type="submit" value="Submit">
 			</p>
@@ -149,14 +160,14 @@
 			<strong>Please fill your preferred settings for the game:</strong>
 			<form id="settingsForm">
 				<p id="keyboardsButtons">keyboards buttons</p>
-				<label for="keyboardsButtonRight">Right:</label>
-				<input id="keyboardsButtonRight" name="keyboardsButtonRight" type="text" size="2">
-				<label for="keyboardsButtonLeft">Left:</label>
-				<input id="keyboardsButtonLeft" name="keyboardsButtonLeft" type="text" size="2" >
-				<label for="keyboardsButtonUp">Up:</label>
-				<input id="keyboardsButtonUp" name="keyboardsButtonUp" type="text" size="2" >
-				<label for="keyboardsButtonDown">Down:</label>
-				<input id="keyboardsButtonDown" name="keyboardsButtonDown" type="text" size="2" >
+				<label for="ButtonRight">Right:</label>
+				<input id="keyboardsButtonRight" name="keyboardsButtonRight" type="text" size="2" autocomplete="off">
+				<label for="ButtonLeft">Left:</label>
+				<input id="keyboardsButtonLeft" name="keyboardsButtonLeft" type="text" size="2" autocomplete="off">
+				<label for="ButtonUp">Up:</label>
+				<input id="keyboardsButtonUp" name="keyboardsButtonUp" type="text" size="2" autocomplete="off">
+				<label for="ButtonDown">Down:</label>
+				<input id="keyboardsButtonDown" name="keyboardsButtonDown" type="text" size="2" autocomplete="off">
 				</br>
 				</br>	
 				<label for="numberOfBalls">number of balls (between 50 to 90)</label>
@@ -248,44 +259,45 @@
 		</div>
 
 		<div class='display' id="gameBoard" >
-			<div id="score">
+			<div id="scoreAndTime">
 				<label for="lblScore">SCORE:</label>
 				<input id="lblScore" type="text" />
-			</div>
-			<div id="time">
 				<label for="lblTime">TIME:</label>
 				<input id="lblTime" type="text" />
 			</div>
+		</br>
 		</br>
 			<div id="game">
 				<canvas id="canvas" height="450" width="470"></canvas>
 			</div>
 			<button id="musicBtn" class="musicButton" onclick="playOrStopMusic()" >
-				<img src="images/music-icon1.jpg">
+				<img id="musicImage" src="images/music-icon1.jpg">
 			</button>
 			<audio id="musicPac" src="music/pacmanSong.mp3"></audio>
 		</div>
 	</contet>
 
 	<dialog id="aboutModal" class="modal" display>
-			<p>
-				This Pacman game was created by Hilla Ben Avi and Daniel Gorsia.
+		<h3 id="aboutTitle">About the game:</h3>	
+		<p id="aboutText">This Pacman game was created by Hilla Ben Avi and Daniel Gorsia.
+		</br>
+				The jQuery plug-ins that have been used in the game are jQuery Validation 
+				to validate all the forms fields and the datepicker plug-in which used in the register form. 
+			</br>
 				We have encountered the following difficulties:
-				There are a lot of ways to do something in java script, so, we read a lot of 
+				There are a lot of ways to do something in java script, so we read a lot of 
 				information about each functionlity.
-				In addition, we had null errors by the DOM creation, but we fighure it out.
-				We used jqueryvalidation for validation of fields in register form. 
+				In addition, we had null errors by the DOM creation, but we fighured it out.
 			</p>
 			</br>
-			<span class= "close-btn">&times;</span>
+			<span id= "closeAbout" class= "close-btn">&times;</span>
 	</dialog> 
-
-
 
 	<dialog id="incorrectDetailsDialog">
 		<h3>One or more of your details are wrong!</h3>
 		<button class="incorrectDetailsDialog" onclick="closeIncorrectDetailsDialog()">X</button>	
 	</dialog>
+	
 	<footer>
 		<p>For any questions or problems please contact us by e-mail: </p>
 		<p>gorsia@post.bgu.ac.il / hillabe@post.bgu.ac.il</p>
